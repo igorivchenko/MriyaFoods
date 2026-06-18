@@ -1,66 +1,61 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main style={{ padding: "4rem 2rem", minHeight: "100vh", display: "flex", flexDirection: "column", gap: "3rem", maxWidth: "800px", margin: "0 auto" }}>
+      <header style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+        <h1 className="text-headline-l">Mriya Foods</h1>
+        <p className="text-body-m" style={{ opacity: 0.8 }}>Design System Foundation & Global Style Verification</p>
+      </header>
+
+      <section className="glass-panel glass-panel-hover" style={{ padding: "2rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+        <h2 className="text-headline-m">Glassmorphic Container</h2>
+        <p className="text-body-m">
+          This panel showcases our Liquid Glass effect. It features translucent white backing with backdrop filters, subtle border reflections, and soft primary-tinted drop shadows.
+        </p>
+        
+        <div className="search-bar" style={{ maxWidth: "400px" }}>
+          <span className="text-label-m" style={{ color: "var(--color-primary-tint)" }}>🔍</span>
+          <input className="search-input" type="text" placeholder="Search premium foods..." aria-label="Search" />
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+        <h2 className="text-headline-m">Interactive Atom Actions</h2>
+        
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+          <button className="btn btn-primary">Primary Action</button>
+          <button className="btn btn-secondary">Secondary Action</button>
+          <button className="btn btn-inverted">Inverted Action</button>
+          <button className="btn btn-outlined">Outlined Action</button>
         </div>
-      </main>
-    </div>
+
+        <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+          <span className="badge">Default Status</span>
+          <span className="badge badge-delete">Danger Action</span>
+        </div>
+      </section>
+
+      <section style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <h2 className="text-headline-m">Color Token Verification</h2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: "1rem" }}>
+          <div style={{ background: "var(--color-primary)", color: "var(--color-white)", padding: "1rem", borderRadius: "var(--radius-sm)", textAlign: "center" }}>
+            <span className="text-label-m">Primary</span>
+            <div style={{ fontSize: "0.8rem", marginTop: "0.5rem" }}>#4E2E1E</div>
+          </div>
+          <div style={{ background: "var(--color-secondary)", color: "var(--color-black)", padding: "1rem", borderRadius: "var(--radius-sm)", textAlign: "center" }}>
+            <span className="text-label-m" style={{ color: "inherit" }}>Secondary</span>
+            <div style={{ fontSize: "0.8rem", marginTop: "0.5rem" }}>#FFD42F</div>
+          </div>
+          <div style={{ background: "var(--color-tertiary)", color: "var(--color-black)", padding: "1rem", borderRadius: "var(--radius-sm)", textAlign: "center" }}>
+            <span className="text-label-m" style={{ color: "inherit" }}>Tertiary</span>
+            <div style={{ fontSize: "0.8rem", marginTop: "0.5rem" }}>#D9D9D9</div>
+          </div>
+          <div style={{ background: "var(--color-white)", border: "1px solid var(--color-tertiary)", color: "var(--color-black)", padding: "1rem", borderRadius: "var(--radius-sm)", textAlign: "center" }}>
+            <span className="text-label-m" style={{ color: "inherit" }}>Neutral</span>
+            <div style={{ fontSize: "0.8rem", marginTop: "0.5rem" }}>#FFFFFF</div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
+

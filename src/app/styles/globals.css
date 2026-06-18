@@ -1,0 +1,236 @@
+@import "./variables.css";
+@import "./reset.css";
+
+/* ==========================================================================
+   Global Utilities & Layout Components (FSD Shared Layout Infrastructure)
+   ========================================================================== */
+
+/* --- Layout Containers --- */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* Flex & Grid alignment helpers */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- Glassmorphic / Liquid Glass Panels (Shared Visual Style) --- */
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--glass-backdrop-blur));
+  border-radius: var(--radius-lg);
+  transition: background var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.glass-panel-hover:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 12px 40px 0 rgba(78, 46, 30, 0.08);
+}
+
+/* --- Hierarchy Typography Presets --- */
+.text-headline-l {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  line-height: var(--line-height-tight);
+}
+
+.text-headline-m {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
+  color: var(--color-primary);
+  line-height: var(--line-height-snug);
+}
+
+.text-body-m {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--foreground);
+}
+
+.text-label-m {
+  font-family: var(--font-label);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* --- Interactive Element Templates (Buttons & Inputs) --- */
+
+/* Base Button Reset & Layout */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  font-family: var(--font-label);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  gap: var(--spacing-sm);
+  border: 1px solid transparent;
+  outline: none;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Primary Button (Brown) */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+/* Secondary Button (Translucent Gray / Off-White) */
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: var(--color-primary);
+  border-color: var(--color-tertiary);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.75);
+  border-color: var(--color-primary-tint);
+  transform: translateY(-1px);
+}
+
+/* Inverted Button (Dark Charcoal / Black) */
+.btn-inverted {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+}
+
+.btn-inverted:hover:not(:disabled) {
+  background-color: #000000;
+  border-color: #000000;
+  transform: translateY(-1px);
+}
+
+/* Outlined Button (Transparent with Primary Border) */
+.btn-outlined {
+  background-color: transparent;
+  border-color: var(--color-tertiary-dark);
+  color: var(--foreground);
+}
+
+.btn-outlined:hover:not(:disabled) {
+  background-color: var(--color-white);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+/* Search bar styling template */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem var(--spacing-md);
+  transition: all var(--transition-normal);
+  gap: var(--spacing-sm);
+}
+
+.search-bar:focus-within {
+  background: var(--color-white);
+  border-color: var(--color-primary-tint);
+  box-shadow: 0 4px 12px 0 rgba(78, 46, 30, 0.04);
+}
+
+.search-input {
+  width: 100%;
+  font-family: var(--font-label);
+  font-size: var(--font-size-sm);
+  color: var(--foreground);
+}
+
+.search-input::placeholder {
+  color: var(--color-tertiary-dark);
+}
+
+/* Small Tag/Badge style */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-label);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-xs);
+  background: var(--color-tertiary-light);
+  color: var(--color-black);
+}
+
+/* Accent/Action states */
+.badge-delete {
+  background-color: var(--color-error-light);
+  color: var(--color-error);
+}
+
+.badge-delete:hover {
+  background-color: var(--color-error);
+  color: var(--color-white);
+}
