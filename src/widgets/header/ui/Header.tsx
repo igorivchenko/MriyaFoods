@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
 import { Icon } from "@/shared/ui";
@@ -24,7 +25,9 @@ export interface HeaderProps {
   activePath?: string;
 }
 
-export const Header = ({ activePath = "/" }: HeaderProps) => {
+export const Header = ({ activePath }: HeaderProps) => {
+  const pathname = usePathname();
+  const currentPath = activePath ?? pathname ?? "/";
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const toggleMobile = useCallback(() => {
@@ -121,9 +124,9 @@ export const Header = ({ activePath = "/" }: HeaderProps) => {
                   href={link.href}
                   role="menuitem"
                   className={`${styles.navLink} ${
-                    activePath === link.href ? styles.navLinkActive : ""
+                    currentPath === link.href ? styles.navLinkActive : ""
                   }`.trim()}
-                  aria-current={activePath === link.href ? "page" : undefined}
+                  aria-current={currentPath === link.href ? "page" : undefined}
                 >
                   {link.label}
                 </Link>

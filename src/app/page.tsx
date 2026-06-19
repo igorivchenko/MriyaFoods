@@ -1,10 +1,5 @@
-"use client";
-import { Header } from "@/widgets/header";
+import { HomePage } from "@/pages/home";
 
 export default function Home() {
-  return (
-    <>
-      <Header activePath="/" />
-    </>
-  );
+  return <HomePage />;
 }
