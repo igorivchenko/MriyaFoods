@@ -19,7 +19,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Mriya Foods — Premium E-Commerce Store",
-  description: "A modern, high-performance e-commerce store featuring a pixel-perfect custom UI and stellar user experience.",
+  description:
+    "A modern, high-performance e-commerce store featuring a pixel-perfect custom UI and stellar user experience.",
 };
 
 export default function RootLayout({
