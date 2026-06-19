@@ -22,7 +22,10 @@ architecture, and stellar user experience.
 
 - **Framework:** Next.js 15+ (App Router)
 - **Language:** TypeScript (Strict Mode)
-- **Styling:** CSS Modules
+- **Styling:** CSS Modules, `clsx` (dynamic class names)
+- **Icons:** `lucide-react` (SVG icon library)
+- **Toasts:** `react-hot-toast` (accessible notifications)
+- **Loaders:** `react-spinners` (loading states)
 - **Animation:** Framer Motion (GPU-friendly transitions)
 - **Form Management:** React Hook Form
 - **Validation:** Zod

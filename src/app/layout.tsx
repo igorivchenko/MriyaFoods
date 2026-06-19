@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto, Inter } from "next/font/google";
+import { ToastProvider } from "./providers";
 import "./styles/globals.css";
 
 const roboto = Roboto({
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.variable} ${inter.variable}`}>
       <body>
+        <ToastProvider />
         {children}
       </body>
     </html>

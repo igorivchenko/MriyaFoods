@@ -15,15 +15,15 @@
   white-space: nowrap;
   gap: var(--spacing-sm);
   user-select: none;
-  
+
   /* Smooth hardware-accelerated transitions */
-  transition: 
+  transition:
     background-color var(--transition-fast),
     border-color var(--transition-fast),
     color var(--transition-fast),
     box-shadow var(--transition-fast),
     transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   transform: scale(1);
 }
 
@@ -125,6 +125,10 @@
 /* Circular override for icon button */
 .circular {
   border-radius: var(--radius-full);
+}
+
+.text {
+  height: 100%;
 }
 
 /* --- Sizes --- */
