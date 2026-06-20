@@ -1,10 +1,11 @@
 import { Hero } from "@/widgets/hero";
+import { About } from "@/widgets/about";
 
 export const HomePage = () => {
   return (
     <main>
       <Hero />
-      {/* Future sections (e.g. Featured Products, About us preview) will stack here */}
+      <About />
     </main>
   );
 };

@@ -183,15 +183,15 @@
 /* Floating pill text badges */
 .badgeTaste {
   position: absolute;
-  top: 22%;
-  left: 0;
+  top: 25%;
+  left: -8%;
   background-color: var(--color-white);
   color: var(--color-black);
   font-family: var(--font-label);
   font-size: 0.875rem; /* 14px */
   font-weight: var(--font-weight-medium);
   padding: 0.75rem 1.25rem;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-xl) 0 var(--radius-xl) var(--radius-xl);
   box-shadow:
     0 10px 25px -5px rgba(0, 0, 0, 0.08),
     0 8px 10px -6px rgba(0, 0, 0, 0.05);
@@ -202,15 +202,15 @@
 
 .badgeYummy {
   position: absolute;
-  bottom: 12%;
-  right: 0;
+  bottom: 8%;
+  right: 5%;
   background-color: var(--color-white);
   color: var(--color-black);
   font-family: var(--font-label);
   font-size: 0.875rem; /* 14px */
   font-weight: var(--font-weight-medium);
   padding: 0.75rem 1.25rem;
-  border-radius: var(--radius-xl);
+  border-radius: 0 var(--radius-xl) var(--radius-xl) var(--radius-xl);
   box-shadow:
     0 10px 25px -5px rgba(0, 0, 0, 0.08),
     0 8px 10px -6px rgba(0, 0, 0, 0.05);

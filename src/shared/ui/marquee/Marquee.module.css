@@ -1,0 +1,66 @@
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee-run 35s linear infinite;
+  will-change: transform;
+}
+
+.marqueeTrack.reverse {
+  animation: marquee-run-reverse 35s linear infinite;
+}
+
+.marqueeGroup {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  padding-right: 3.5rem;
+}
+
+.marqueeItem {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.marqueeText {
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  opacity: 0.95;
+}
+
+.flagsContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flagIcon {
+  object-fit: contain;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+  height: 11px;
+}
+
+/* CSS Keyframes for Hardware-Accelerated 60fps Scrolling */
+@keyframes marquee-run {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-run-reverse {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
