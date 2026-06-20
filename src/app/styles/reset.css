@@ -139,12 +139,6 @@ a {
   background: var(--color-primary-tint);
 }
 
-/* Accessibility: Consistent focus rings */
-:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 4px;
-}
-
 /* Remove animations/transitions for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {

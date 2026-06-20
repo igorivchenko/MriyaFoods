@@ -103,6 +103,7 @@
 .cta {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--spacing-md);
   width: 100%;
 }
@@ -156,8 +157,8 @@
   background-color: var(--color-secondary);
   border-radius: var(--radius-full);
   z-index: 1;
-  top: 52%;
-  left: 50%;
+  top: 56%;
+  left: 46%;
   transform: translate(-50%, -50%);
   box-shadow: 0 12px 32px rgba(var(--color-secondary-rgb), 0.15);
 }
@@ -241,6 +242,7 @@
 
   .contentColumn {
     align-items: center;
+    max-width: none;
   }
 
   .features {
@@ -282,7 +284,6 @@
   }
 
   .cta {
-    flex-direction: column;
     width: 100%;
     gap: var(--spacing-sm);
   }

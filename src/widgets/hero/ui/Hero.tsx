@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ShieldCheck, MapPin, Smile } from "lucide-react";
 import { Button } from "@/shared/ui";
-import heroImg from "@/assets/images/hero/hero.png";
+import heroImg from "@/assets/images/hero.png";
 import styles from "./Hero.module.css";
 
 export const Hero = () => {
