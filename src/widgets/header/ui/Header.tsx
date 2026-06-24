@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
 import { Icon } from "@/shared/ui";
+import { useCart } from "@/entities/cart";
 import styles from "./Header.module.css";
 
 /** Navigation link descriptor */
@@ -29,6 +30,7 @@ export const Header = ({ activePath }: HeaderProps) => {
   const pathname = usePathname();
   const currentPath = activePath ?? pathname ?? "/";
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { totalCount } = useCart();
 
   const toggleMobile = useCallback(() => {
     setMobileOpen((prev) => !prev);
@@ -137,7 +139,11 @@ export const Header = ({ activePath }: HeaderProps) => {
           {/* Action zone: Search + Cart + Account */}
           <div className={styles.actions}>
             {/* Search bar */}
-            <form className={styles.searchBar} role="search" onSubmit={(e) => e.preventDefault()}>
+            <form
+              className={styles.searchBar}
+              role="search"
+              onSubmit={(e) => e.preventDefault()}
+            >
               <label htmlFor="header-search" className="visually-hidden">
                 Search
               </label>
@@ -161,9 +167,12 @@ export const Header = ({ activePath }: HeaderProps) => {
             <button
               type="button"
               className={styles.actionBtn}
-              aria-label="Shopping cart"
+              aria-label={`Shopping cart, ${totalCount} items`}
             >
               <ShoppingCart size={20} />
+              {totalCount > 0 && (
+                <span className={styles.cartBadge}>{totalCount}</span>
+              )}
             </button>
 
             {/* Account button — dumb presentational */}

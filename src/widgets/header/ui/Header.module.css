@@ -285,6 +285,7 @@
   background: transparent;
   color: var(--color-white);
   cursor: pointer;
+  position: relative;
   transition:
     background-color var(--transition-fast),
     color var(--transition-fast),
@@ -298,6 +299,37 @@
 
 .actionBtn:active {
   transform: scale(0.94);
+}
+
+.cartBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  font-family: var(--font-label);
+  font-size: 10px;
+  font-weight: var(--font-weight-black);
+  min-width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border: 1.5px solid var(--color-primary); /* Blend border with main nav background */
+  animation: badge-pop var(--transition-normal)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes badge-pop {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* --- Mobile Hamburger Toggle --- */

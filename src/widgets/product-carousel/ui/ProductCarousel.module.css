@@ -1,0 +1,108 @@
+.section {
+  padding: var(--spacing-2xl) 0;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.container {
+  position: relative;
+}
+
+.sectionTitle {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-primary);
+  margin: 0 0 var(--spacing-lg) 0;
+  letter-spacing: -0.01em;
+  text-transform: capitalize;
+}
+
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.swiperContainer {
+  padding: var(--spacing-sm) 0 var(--spacing-lg) 0 !important;
+  overflow: hidden !important;
+}
+
+.slide {
+  height: auto !important;
+  display: flex;
+}
+
+/* Custom Navigation Buttons matching site design */
+.navButton {
+  position: absolute;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-white);
+  border: 1px solid rgba(78, 46, 30, 0.12);
+  border-radius: var(--radius-full);
+  color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(78, 46, 30, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  outline: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.prevButton {
+  left: -22px;
+  transform: translateY(-50%) scale(1);
+}
+
+.nextButton {
+  right: -22px;
+  transform: translateY(-50%) scale(1);
+}
+
+.navButton:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-50%) scale(1.06);
+  box-shadow: 0 6px 16px rgba(78, 46, 30, 0.15);
+}
+
+.navButton:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+/* Disabled state */
+.disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  transform: translateY(-50%) !important;
+  background-color: var(--color-white) !important;
+  color: var(--color-primary) !important;
+  border-color: rgba(78, 46, 30, 0.08) !important;
+  box-shadow: none !important;
+}
+
+/* Mobile & Tablet Overrides (Native Touch Gestures) */
+@media (max-width: 1024px) {
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .swiperContainer {
+    padding-right: 2rem !important; /* Allow preview card clipping on touch screens */
+  }
+
+  .navButton {
+    display: none !important;
+  }
+}

@@ -30,6 +30,7 @@ architecture, and stellar user experience.
 - **Form Management:** React Hook Form
 - **Validation:** Zod
 - **State Management:** Redux Toolkit + Redux Thunk
+- **Carousels:** Swiper (mobile touch-gestures & loop)
 
 ### Backend & Infrastructure
 

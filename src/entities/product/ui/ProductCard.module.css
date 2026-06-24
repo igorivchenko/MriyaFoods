@@ -1,0 +1,126 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(78, 46, 30, 0.08);
+  padding: var(--spacing-md);
+  box-shadow: 0 4px 16px rgba(78, 46, 30, 0.03);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+  height: 100%;
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(78, 46, 30, 0.16);
+  box-shadow: 0 12px 28px rgba(78, 46, 30, 0.07);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.25 / 1;
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  transition: transform var(--transition-normal);
+  padding: var(--spacing-sm);
+}
+
+/* Adjust size of Forest Wild Berries Mix image to visually match the others */
+.image[alt*="Berries"],
+.image[alt*="berries"] {
+  padding: 1.25rem !important;
+}
+
+.card:hover .image {
+  transform: scale(1.04);
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.title {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  padding: var(--spacing-xs);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-tint);
+  border-radius: var(--radius-full);
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.iconBtn:hover {
+  color: var(--color-primary);
+  background-color: rgba(78, 46, 30, 0.05);
+  transform: scale(1.1);
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--spacing-md);
+}
+
+.price {
+  font-family: var(--font-label);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.weight {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-tertiary-dark);
+  background-color: var(--color-tertiary-light);
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+}
+
+.addToCartBtn {
+  width: 100%;
+  margin-top: auto;
+  font-weight: var(--font-weight-bold) !important;
+}
