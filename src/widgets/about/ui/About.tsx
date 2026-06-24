@@ -46,8 +46,9 @@ export const About = () => {
               width={560}
               height={450}
               className={styles.handshakeImage}
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "contain", width: "100%", height: "auto" }}
               sizes="(max-width: 768px) 100vw, 560px"
+              priority
             />
           </motion.div>
 

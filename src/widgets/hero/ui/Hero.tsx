@@ -102,7 +102,7 @@ export const Hero = () => {
                 className={styles.heroImage}
                 width={460}
                 height={510}
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "contain", width: "100%", height: "auto" }}
               />
             </div>
 

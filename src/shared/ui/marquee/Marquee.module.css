@@ -44,6 +44,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
   border-radius: 2px;
   height: 11px;
+  width: auto;
 }
 
 /* CSS Keyframes for Hardware-Accelerated 60fps Scrolling */
