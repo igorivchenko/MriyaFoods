@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { Heart, Info } from "lucide-react";
 import { Button, Popup } from "@/shared/ui";
@@ -19,6 +21,7 @@ export const ProductCard = ({
   onShowInfo,
 }: ProductCardProps) => {
   const { title, price, weight, imageUrl } = product;
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   return (
     <article className={styles.card}>
@@ -54,11 +57,26 @@ export const ProductCard = ({
           </Popup>
           <button
             type="button"
-            className={styles.iconBtn}
-            onClick={() => onToggleWishlist?.(product)}
-            aria-label={`Add ${title} to wishlist`}
+            className={`${styles.iconBtn} ${isWishlisted ? styles.active : ""}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsWishlisted(!isWishlisted);
+              onToggleWishlist?.(product);
+            }}
+            aria-label={
+              isWishlisted
+                ? `Remove ${title} from wishlist`
+                : `Add ${title} to wishlist`
+            }
           >
-            <Heart size={18} className={styles.heartIcon} />
+            <Heart
+              size={18}
+              className={styles.heartIcon}
+              style={{
+                fill: isWishlisted ? "var(--color-error)" : "none",
+                color: isWishlisted ? "var(--color-error)" : "currentColor",
+              }}
+            />
           </button>
         </div>
       </div>
