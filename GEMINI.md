@@ -31,6 +31,7 @@ architecture, and stellar user experience.
 - **Validation:** Zod
 - **State Management:** Redux Toolkit + Redux Thunk
 - **Carousels:** Swiper (mobile touch-gestures & loop)
+- **Maps:** Leaflet + React Leaflet (optimized via dynamic lazy-loading)
 
 ### Backend & Infrastructure
 
