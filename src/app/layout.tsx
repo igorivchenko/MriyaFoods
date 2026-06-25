@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto, Inter } from "next/font/google";
 import { ToastProvider } from "./providers";
 import { Header } from "@/widgets/header";
+import { Footer } from "@/widgets/footer";
 import { CartProvider } from "@/entities/cart";
 import "./styles/globals.css";
 
@@ -37,6 +38,7 @@ export default function RootLayout({
           <ToastProvider />
           <Header />
           {children}
+          <Footer />
         </CartProvider>
       </body>
     </html>

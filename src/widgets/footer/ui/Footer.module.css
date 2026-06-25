@@ -1,0 +1,139 @@
+.footer {
+  background-color: var(--color-primary);
+  color: rgba(255, 255, 255, 0.75);
+  padding: var(--spacing-3xl) 0 0 0;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-3xl);
+  text-align: center;
+}
+
+/* Logo Column */
+.columnLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-normal);
+}
+
+.logoLink:hover {
+  transform: scale(1.05);
+}
+
+.logoIcon {
+  height: 132px;
+  color: var(--color-white);
+}
+
+/* Columns styling */
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.columnTitle {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  margin-bottom: var(--spacing-lg);
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+.linkList,
+.contactList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.link {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.75);
+  transition: color var(--transition-fast);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--color-secondary);
+}
+
+.contactText {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Bottom Copyright Bar */
+.bottomBar {
+  background-color: var(--color-secondary);
+  padding: 0.75rem 0;
+  width: 100%;
+  text-align: center;
+}
+
+.copyright {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  color: var(--color-primary-dark);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-3xl);
+    text-align: left;
+  }
+
+  .columnLogo {
+    justify-content: flex-start;
+  }
+
+  .logoLink {
+    justify-content: flex-start;
+  }
+
+  .column {
+    align-items: flex-start;
+  }
+
+  .linkList,
+  .contactList {
+    align-items: flex-start;
+  }
+}
