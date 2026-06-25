@@ -26,15 +26,15 @@ export const Marquee = ({
               <Image
                 src="/assets/about/canada.svg"
                 alt="Canada Flag"
-                width={24}
-                height={12}
+                width={19}
+                height={14}
                 className={styles.flagIcon}
               />
               <Image
                 src="/assets/about/ukraine.svg"
                 alt="Ukraine Flag"
-                width={18}
-                height={12}
+                width={19}
+                height={14}
                 className={styles.flagIcon}
               />
             </div>
