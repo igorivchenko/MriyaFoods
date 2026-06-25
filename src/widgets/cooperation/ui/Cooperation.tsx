@@ -43,8 +43,8 @@ export const Cooperation = () => {
                   <Image
                     src="/assets/cooperation/cooperation.png"
                     alt="Smiling representative gesturing to the contact form"
-                    width={400}
-                    height={400}
+                    width={600}
+                    height={600}
                     className={styles.image}
                     sizes="(max-width: 1024px) 100vw, 400px"
                     priority

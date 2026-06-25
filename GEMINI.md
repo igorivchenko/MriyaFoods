@@ -1,6 +1,6 @@
 # GEMINI.md
 
-## Project: Antigravity
+## Project: MriyaFoods
 
 A modern, high-performance e-commerce store featuring a pixel-perfect custom UI, robust
 architecture, and stellar user experience.
