@@ -163,17 +163,19 @@ export const Header = ({ activePath }: HeaderProps) => {
               </button>
             </form>
 
-            {/* Cart button — dumb presentational */}
-            <button
-              type="button"
-              className={styles.actionBtn}
+            {/* Cart button — Link pointing to /cart */}
+            <Link
+              href="/cart"
+              className={`${styles.actionBtn} ${
+                currentPath === "/cart" ? styles.actionBtnActive : ""
+              }`.trim()}
               aria-label={`Shopping cart, ${totalCount} items`}
             >
               <ShoppingCart size={20} />
               {totalCount > 0 && (
                 <span className={styles.cartBadge}>{totalCount}</span>
               )}
-            </button>
+            </Link>
 
             {/* Account button — dumb presentational */}
             <button

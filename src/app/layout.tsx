@@ -4,7 +4,6 @@ import { ToastProvider, StoreProvider } from "./providers";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
 import { ScrollToTop } from "@/features/scroll-to-top";
-import { CartProvider } from "@/entities/cart";
 import "./styles/globals.css";
 
 const roboto = Roboto({
@@ -36,13 +35,11 @@ export default function RootLayout({
     <html lang="en" className={`${roboto.variable} ${inter.variable}`}>
       <body>
         <StoreProvider>
-          <CartProvider>
-            <ToastProvider />
-            <Header />
-            {children}
-            <Footer />
-            <ScrollToTop />
-          </CartProvider>
+          <ToastProvider />
+          <Header />
+          {children}
+          <Footer />
+          <ScrollToTop />
         </StoreProvider>
       </body>
     </html>

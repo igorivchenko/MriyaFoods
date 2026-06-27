@@ -292,6 +292,10 @@
     transform var(--transition-fast);
 }
 
+.actionBtnActive {
+  color: var(--color-secondary);
+}
+
 .actionBtn:hover {
   background-color: rgba(var(--color-primary-rgb), 0.1);
   transform: translateY(-1px);

@@ -1,12 +1,57 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { catalogReducer } from "@/features/filter-products";
+import { cartReducer } from "@/entities/cart";
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+
+// Safe fallback storage for SSR environment
+const createNoopStorage = () => {
+  return {
+    getItem() {
+      return Promise.resolve(null);
+    },
+    setItem(_key: string, value: unknown) {
+      return Promise.resolve(value);
+    },
+    removeItem() {
+      return Promise.resolve();
+    },
+  };
+};
+
+const storage =
+  typeof window !== "undefined"
+    ? createWebStorage("local")
+    : createNoopStorage();
+
+const persistConfig = {
+  key: "mriyafoods-cart",
+  storage,
+};
+
+const rootReducer = combineReducers({
+  catalog: catalogReducer,
+  cart: persistReducer(persistConfig, cartReducer),
+});
 
 export const makeStore = () => {
   return configureStore({
-    reducer: {
-      catalog: catalogReducer,
-    },
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }),
   });
 };
 
