@@ -81,6 +81,54 @@
   border-color: var(--color-primary-tint);
 }
 
+/* Progressive enhancement for Customizable Select API (CSS Wrapped 2025) */
+@supports (appearance: base-select) {
+  .sortSelect {
+    appearance: base-select;
+    padding: 8px 16px;
+    background-color: var(--color-white);
+    border: 1px solid rgba(78, 46, 30, 0.12);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Style the options picker popup container */
+  .sortSelect::picker(select) {
+    background-color: var(--color-white);
+    border: 1px solid rgba(78, 46, 30, 0.15);
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 30px rgba(78, 46, 30, 0.08);
+    padding: var(--spacing-xs);
+    margin-top: 4px;
+  }
+
+  /* Style option elements inside the picker */
+  .sortSelect option {
+    padding: 8px 12px;
+    font-family: var(--font-label);
+    font-size: var(--font-size-sm);
+    color: var(--color-primary);
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    background-color: transparent;
+    transition:
+      background-color var(--transition-fast),
+      color var(--transition-fast);
+  }
+
+  /* Hover / checked state styling for the options */
+  .sortSelect option:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+  }
+
+  .sortSelect option:checked {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+}
+
 .topPagination {
   display: flex;
   align-items: center;
