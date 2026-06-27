@@ -3,6 +3,7 @@ import { Roboto, Inter } from "next/font/google";
 import { ToastProvider } from "./providers";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
+import { ScrollToTop } from "@/features/scroll-to-top";
 import { CartProvider } from "@/entities/cart";
 import "./styles/globals.css";
 
@@ -39,8 +40,10 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <ScrollToTop />
         </CartProvider>
       </body>
     </html>
   );
 }
+

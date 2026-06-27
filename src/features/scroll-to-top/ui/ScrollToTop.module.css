@@ -1,0 +1,65 @@
+.scrollBtn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 3.125rem; /* 50px */
+  height: 3.125rem; /* 50px */
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.15);
+
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+
+  box-shadow: 0 4px 16px rgba(var(--color-primary-rgb), 0.15);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform 100ms ease;
+}
+
+/* Micro-animations */
+.scrollBtn:hover {
+  background-color: var(--color-secondary-hover);
+  box-shadow: 0 6px 20px rgba(var(--color-primary-rgb), 0.25);
+  border-color: rgba(var(--color-primary-rgb), 0.25);
+}
+
+.scrollBtn:active {
+  transform: scale(0.95);
+}
+
+.scrollBtn:focus-visible {
+  box-shadow:
+    0 0 0 3px rgba(var(--color-secondary-rgb), 0.4),
+    0 4px 16px rgba(var(--color-primary-rgb), 0.15);
+}
+
+.icon {
+  display: block;
+  transition: transform var(--transition-fast);
+}
+
+.scrollBtn:hover .icon {
+  transform: translateY(-2px);
+}
+
+/* Responsiveness for mobile screens */
+@media (max-width: 768px) {
+  .scrollBtn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 2.75rem; /* 44px */
+    height: 2.75rem; /* 44px */
+  }
+}
