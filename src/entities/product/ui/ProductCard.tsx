@@ -20,11 +20,14 @@ export const ProductCard = ({
   onToggleWishlist,
   onShowInfo,
 }: ProductCardProps) => {
-  const { title, price, weight, imageUrl } = product;
+  const { title, price, weight, imageUrl, inStock } = product;
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const isOutOfStock = inStock === false;
 
   return (
-    <article className={styles.card}>
+    <article
+      className={`${styles.card} ${isOutOfStock ? styles.outOfStock : ""}`}
+    >
       {/* Product Image on Top */}
       <div className={styles.imageWrapper}>
         <Image
@@ -42,44 +45,52 @@ export const ProductCard = ({
         <h3 className={styles.title} title={title}>
           {title}
         </h3>
-        <div className={styles.icons}>
-          <Popup
-            content={product.description || "Premium European brand product."}
-          >
+        {!isOutOfStock && (
+          <div className={styles.icons}>
+            <Popup
+              content={product.description || "Premium European brand product."}
+            >
+              <button
+                type="button"
+                className={styles.iconBtn}
+                onClick={() => onShowInfo?.(product)}
+                aria-label={`View info for ${title}`}
+              >
+                <Info size={18} className={styles.infoIcon} />
+              </button>
+            </Popup>
             <button
               type="button"
-              className={styles.iconBtn}
-              onClick={() => onShowInfo?.(product)}
-              aria-label={`View info for ${title}`}
-            >
-              <Info size={18} className={styles.infoIcon} />
-            </button>
-          </Popup>
-          <button
-            type="button"
-            className={`${styles.iconBtn} ${isWishlisted ? styles.active : ""}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsWishlisted(!isWishlisted);
-              onToggleWishlist?.(product);
-            }}
-            aria-label={
-              isWishlisted
-                ? `Remove ${title} from wishlist`
-                : `Add ${title} to wishlist`
-            }
-          >
-            <Heart
-              size={18}
-              className={styles.heartIcon}
-              style={{
-                fill: isWishlisted ? "var(--color-error)" : "none",
-                color: isWishlisted ? "var(--color-error)" : "currentColor",
+              className={`${styles.iconBtn} ${isWishlisted ? styles.active : ""}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsWishlisted(!isWishlisted);
+                onToggleWishlist?.(product);
               }}
-            />
-          </button>
-        </div>
+              aria-label={
+                isWishlisted
+                  ? `Remove ${title} from wishlist`
+                  : `Add ${title} to wishlist`
+              }
+            >
+              <Heart
+                size={18}
+                className={styles.heartIcon}
+                style={{
+                  fill: isWishlisted ? "var(--color-error)" : "none",
+                  color: isWishlisted ? "var(--color-error)" : "currentColor",
+                }}
+              />
+            </button>
+          </div>
+        )}
       </div>
+
+      {isOutOfStock && (
+        <p className={styles.description}>
+          {product.description || "Premium European brand product."}
+        </p>
+      )}
 
       {/* Row with Price + Weight */}
       <div className={styles.priceRow}>
@@ -92,9 +103,10 @@ export const ProductCard = ({
         variant="secondary"
         size="md"
         className={styles.addToCartBtn}
-        onClick={() => onAddToCart?.(product)}
+        onClick={() => !isOutOfStock && onAddToCart?.(product)}
+        disabled={isOutOfStock}
       >
-        Add to cart
+        {isOutOfStock ? "Нема в наявності" : "Add to cart"}
       </Button>
     </article>
   );

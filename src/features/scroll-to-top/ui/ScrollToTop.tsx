@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import styles from "./ScrollToTop.module.css";
 
 export const ScrollToTop = () => {
@@ -46,7 +46,7 @@ export const ScrollToTop = () => {
           aria-label="Scroll to top"
           title="Scroll to top"
         >
-          <ChevronUp className={styles.icon} size={24} />
+          <ArrowUp className={styles.icon} size={20} strokeWidth={2.5} />
         </motion.button>
       )}
     </AnimatePresence>
