@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto, Inter } from "next/font/google";
-import { ToastProvider } from "./providers";
+import { ToastProvider, StoreProvider } from "./providers";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
 import { ScrollToTop } from "@/features/scroll-to-top";
@@ -35,15 +35,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.variable} ${inter.variable}`}>
       <body>
-        <CartProvider>
-          <ToastProvider />
-          <Header />
-          {children}
-          <Footer />
-          <ScrollToTop />
-        </CartProvider>
+        <StoreProvider>
+          <CartProvider>
+            <ToastProvider />
+            <Header />
+            {children}
+            <Footer />
+            <ScrollToTop />
+          </CartProvider>
+        </StoreProvider>
       </body>
     </html>
   );
 }
-

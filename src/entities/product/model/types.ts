@@ -7,4 +7,8 @@ export interface Product {
   price: number;
   weight: string;
   imageUrl: string | StaticImageData;
+  category?: string;
+  brand?: string;
+  manufacturer?: string;
+  inStock?: boolean;
 }
