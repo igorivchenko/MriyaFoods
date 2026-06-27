@@ -94,6 +94,15 @@
   transform: scale(0.95);
 }
 
+.qtyBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: var(--color-white);
+  color: var(--color-tertiary-dark);
+  box-shadow: none;
+  transform: none;
+}
+
 .qtyVal {
   font-family: var(--font-headline);
   font-size: var(--font-size-sm);

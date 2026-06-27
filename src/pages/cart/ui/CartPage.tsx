@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ShoppingBag, ArrowRight } from "lucide-react";
+import { ShoppingBag, ArrowRight, Trash2 } from "lucide-react";
 import { ClipLoader } from "react-spinners";
 import { useCart, CartItem } from "@/entities/cart";
 import { Button } from "@/shared/ui";
@@ -11,8 +11,14 @@ import styles from "./CartPage.module.css";
 
 export const CartPage = () => {
   const router = useRouter();
-  const { cartItems, updateQuantity, removeFromCart, totalCount, totalPrice } =
-    useCart();
+  const {
+    cartItems,
+    updateQuantity,
+    removeFromCart,
+    clearCart,
+    totalCount,
+    totalPrice,
+  } = useCart();
   const [mounted, setMounted] = useState(false);
 
   // Handle client-side hydration delays gracefully
@@ -88,6 +94,17 @@ export const CartPage = () => {
                     onRemove={removeFromCart}
                   />
                 ))}
+
+                <div className={styles.clearCartRow}>
+                  <button
+                    type="button"
+                    className={styles.clearCartBtn}
+                    onClick={clearCart}
+                  >
+                    <Trash2 size={15} />
+                    Clear Cart
+                  </button>
+                </div>
               </div>
             </section>
 

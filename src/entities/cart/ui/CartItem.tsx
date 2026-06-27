@@ -23,8 +23,6 @@ export const CartItem = ({
   const handleDecrease = () => {
     if (quantity > 1) {
       onUpdateQuantity(id, quantity - 1);
-    } else {
-      onRemove(id);
     }
   };
 
@@ -57,6 +55,7 @@ export const CartItem = ({
           type="button"
           className={styles.qtyBtn}
           onClick={handleDecrease}
+          disabled={quantity <= 1}
           aria-label={`Decrease quantity of ${title}`}
         >
           <Minus size={12} />
