@@ -1,0 +1,121 @@
+.pageContainer {
+  background-color: var(--background);
+  min-height: calc(100vh - 180px); /* Adjusts for header/footer offsets */
+  padding: var(--spacing-2xl) 0;
+  transition: background-color var(--transition-normal);
+}
+
+.wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Two-column e-commerce grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--spacing-2xl);
+  align-items: start;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+.rightColumn {
+  width: 100%;
+  padding-top: var(--spacing-2xl);
+  align-self: flex-start;
+}
+
+.stickySummary {
+  position: sticky;
+  top: 100px;
+  width: 100%;
+}
+
+/* Breadcrumbs styling */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-label);
+  font-size: var(--font-size-sm);
+  color: var(--color-primary-tint);
+}
+
+.breadcrumbLink {
+  color: var(--color-primary-tint);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.breadcrumbLink:hover {
+  color: var(--color-primary);
+}
+
+.breadcrumbSeparator {
+  color: var(--color-primary-tint);
+  opacity: 0.7;
+}
+
+.breadcrumbCurrent {
+  color: var(--color-primary-dark);
+  font-weight: var(--font-weight-medium);
+}
+
+.pageTitle {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.formCard {
+  width: 100%;
+}
+
+/* Loading state styles matching CartPage */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  background-color: var(--background);
+  gap: var(--spacing-md);
+}
+
+.loadingText {
+  font-family: var(--font-label);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary-tint);
+}
+
+/* Responsive breakdowns */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .stickySummary {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageContainer {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .pageTitle {
+    font-size: var(--font-size-2xl);
+  }
+}

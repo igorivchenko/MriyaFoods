@@ -1,0 +1,124 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  width: 100%;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.sectionTitle {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-black);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+/* CSS Grid layout for fields */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--spacing-lg);
+  row-gap: var(--spacing-md);
+  width: 100%;
+}
+
+/* Payment Selector styles */
+.paymentContainer {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(78, 46, 30, 0.15);
+  border-bottom: 1px solid rgba(78, 46, 30, 0.15);
+  margin-top: var(--spacing-xs);
+}
+
+.paymentOption {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-xs);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(78, 46, 30, 0.08);
+  transition: background-color var(--transition-fast);
+  user-select: none;
+}
+
+.paymentOption:last-child {
+  border-bottom: none;
+}
+
+.paymentOption:hover:not([disabled]) {
+  background-color: rgba(78, 46, 30, 0.02);
+}
+
+/* Hide standard radio input */
+.hiddenRadio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Custom checkbox box */
+.customCheck {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--color-primary-tint);
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-white);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+/* Selected state checkmark styling */
+.hiddenRadio:checked + .customCheck {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.checkmark {
+  color: var(--color-white);
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.hiddenRadio:checked + .customCheck .checkmark {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Payment labels */
+.paymentText {
+  font-family: var(--font-label);
+  font-size: var(--font-size-sm);
+  color: var(--foreground);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Error text styling */
+.paymentError {
+  font-family: var(--font-label);
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  margin: var(--spacing-xs) 0 0 0;
+}
+
+/* Responsive grid layout */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    row-gap: var(--spacing-sm);
+  }
+}

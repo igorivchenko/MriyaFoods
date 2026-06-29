@@ -1,0 +1,262 @@
+.summaryCard {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.summaryTitle {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-black);
+  margin: 0;
+}
+
+/* Pricing Section */
+.pricingRows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.priceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rowLabel {
+  font-family: var(--font-label);
+  font-size: var(--font-size-base);
+  color: var(--color-tertiary-dark);
+}
+
+.rowValue {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-black);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-xs);
+  padding-top: var(--spacing-sm);
+  border-top: 1px dashed rgba(78, 46, 30, 0.15);
+}
+
+.totalLabel {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-black);
+}
+
+.totalValue {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-primary);
+}
+
+/* Purchase Button styling */
+.purchaseBtn {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  background-color: var(--color-secondary);
+  color: var(--color-black);
+  font-weight: var(--font-weight-bold);
+  transition:
+    background-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(255, 212, 47, 0.25);
+  border: none;
+}
+
+.purchaseBtn:hover:not(:disabled) {
+  background-color: var(--color-secondary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 212, 47, 0.35);
+}
+
+.purchaseBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.purchaseBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Scrollable Preview List */
+.itemsListContainer {
+  margin-top: var(--spacing-xs);
+  border-top: 1px solid rgba(78, 46, 30, 0.1);
+  padding-top: var(--spacing-md);
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  max-height: 290px;
+  overflow-y: auto;
+  padding-right: var(--spacing-xs);
+  gap: var(--spacing-md);
+}
+
+/* Custom Scrollbar */
+.itemsList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.itemsList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.itemsList::-webkit-scrollbar-thumb {
+  background: var(--color-primary-light);
+  border-radius: var(--radius-full);
+}
+
+.itemsList::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-tint);
+}
+
+/* Individual Item Row */
+.itemRow {
+  display: flex;
+  gap: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid rgba(78, 46, 30, 0.06);
+}
+
+.itemRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-tertiary-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.itemImage {
+  object-fit: cover;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.itemTitle {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-black);
+  margin: 0;
+  line-height: var(--line-height-snug);
+}
+
+.deleteBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-primary-tint);
+  cursor: pointer;
+  padding: 2px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.deleteBtn:hover {
+  background-color: var(--color-error-light);
+  color: var(--color-error);
+}
+
+.controlsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* Weight Controller Pill Box */
+.weightController {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-tertiary-light);
+  border-radius: var(--radius-full);
+  padding: 2px 4px;
+  border: 1px solid rgba(78, 46, 30, 0.08);
+}
+
+.controlBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-primary);
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.controlBtn:hover:not(:disabled) {
+  background-color: rgba(78, 46, 30, 0.1);
+}
+
+.controlBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.weightVal {
+  font-family: var(--font-label);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary-dark);
+  padding: 0 var(--spacing-sm);
+  min-width: 50px;
+  text-align: center;
+  user-select: none;
+}
+
+.itemPrice {
+  font-family: var(--font-headline);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-black);
+}
