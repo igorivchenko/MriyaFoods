@@ -29,7 +29,7 @@
 
 .followLabel {
   font-size: 14px;
-  color: var(--color-primary);
+  color: #4e2e1e; /* Explicit brand dark brown for readability on yellow bar */
   white-space: nowrap;
 }
 
@@ -45,7 +45,7 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: var(--color-primary);
+  color: #4e2e1e; /* Explicit brand dark brown for readability on yellow bar */
   border-radius: var(--radius-xs);
   transition:
     color var(--transition-fast),
@@ -53,7 +53,7 @@
 }
 
 .socialLink:hover {
-  color: var(--color-primary-hover);
+  color: #3b2317;
   transform: translateY(-1px);
 }
 
@@ -65,11 +65,11 @@
   white-space: nowrap;
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.04em;
-  color: var(--color-tertiary-dark);
+  color: #4e2e1e; /* Explicit brand dark brown for readability on yellow bar */
 }
 
 .phoneLink {
-  color: var(--color-primary);
+  color: #4e2e1e; /* Explicit brand dark brown for readability on yellow bar */
   font-weight: var(--font-weight-semibold);
   white-space: nowrap;
   transition:
@@ -79,7 +79,7 @@
 }
 
 .phoneLink:hover {
-  color: var(--color-primary-hover);
+  color: #3b2317;
   opacity: 0.85;
 }
 
@@ -447,7 +447,8 @@
     margin-bottom: var(--spacing-md);
   }
 
-  .mobileDrawerClose {
+  .mobileDrawerClose,
+  .mobileThemeToggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -461,7 +462,8 @@
     transition: background-color var(--transition-fast);
   }
 
-  .mobileDrawerClose:hover {
+  .mobileDrawerClose:hover,
+  .mobileThemeToggle:hover {
     background: rgba(var(--color-primary-rgb), 0.12);
   }
 
@@ -561,4 +563,36 @@
   .phoneLink {
     font-size: 11px;
   }
+}
+
+/* ==========================================================================
+   Dark Mode Overrides for Header
+   ========================================================================== */
+:global(.dark) .navBar {
+  background-color: #1a1a1a;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+:global(.dark) .mobileDrawer {
+  background-color: #1e1e1e;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4);
+}
+
+:global(.dark) .mobileDrawerClose,
+:global(.dark) .mobileThemeToggle {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-primary);
+}
+
+:global(.dark) .mobileDrawerClose:hover,
+:global(.dark) .mobileThemeToggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+:global(.dark) .mobileNavLink {
+  color: var(--color-primary);
+}
+
+:global(.dark) .mobileNavLink:hover {
+  background-color: rgba(255, 255, 255, 0.05);
 }

@@ -3,9 +3,10 @@
 import { useState, useCallback, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
+import { Search, ShoppingCart, User, Menu, X, Sun, Moon } from "lucide-react";
 import { Icon } from "@/shared/ui";
 import { useCart } from "@/entities/cart";
+import { useTheme } from "@/entities/theme";
 import styles from "./Header.module.css";
 
 /** Navigation link descriptor */
@@ -31,6 +32,7 @@ export const Header = ({ activePath }: HeaderProps) => {
   const currentPath = activePath ?? pathname ?? "/";
   const [mobileOpen, setMobileOpen] = useState(false);
   const { totalCount } = useCart();
+  const { isDark, toggleTheme } = useTheme();
 
   const toggleMobile = useCallback(() => {
     setMobileOpen((prev) => !prev);
@@ -198,6 +200,16 @@ export const Header = ({ activePath }: HeaderProps) => {
               <User size={20} />
             </button>
 
+            {/* Theme Toggle button */}
+            <button
+              type="button"
+              className={styles.actionBtn}
+              onClick={toggleTheme}
+              aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
+            >
+              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+
             {/* Mobile hamburger toggle */}
             <button
               type="button"
@@ -231,14 +243,30 @@ export const Header = ({ activePath }: HeaderProps) => {
       >
         <div className={styles.mobileDrawerHeader}>
           <span className={styles.brandName}>MriyaFoods</span>
-          <button
-            type="button"
-            className={styles.mobileDrawerClose}
-            aria-label="Close menu"
-            onClick={closeMobile}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "var(--spacing-xs)",
+            }}
           >
-            <X size={18} />
-          </button>
+            <button
+              type="button"
+              className={styles.mobileThemeToggle}
+              onClick={toggleTheme}
+              aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button
+              type="button"
+              className={styles.mobileDrawerClose}
+              aria-label="Close menu"
+              onClick={closeMobile}
+            >
+              <X size={18} />
+            </button>
+          </div>
         </div>
 
         {/* Mobile search */}

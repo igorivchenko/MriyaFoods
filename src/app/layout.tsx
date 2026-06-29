@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto, Inter } from "next/font/google";
-import { ToastProvider, StoreProvider } from "./providers";
+import { ToastProvider, StoreProvider, ThemeSync } from "./providers";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
 import { ScrollToTop } from "@/features/scroll-to-top";
@@ -32,9 +32,41 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${roboto.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      className={`${roboto.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const persistThemeRaw = localStorage.getItem('persist:mriyafoods-theme');
+                  let theme = null;
+                  if (persistThemeRaw) {
+                    const parsedPersist = JSON.parse(persistThemeRaw);
+                    if (parsedPersist.theme) {
+                      theme = JSON.parse(parsedPersist.theme);
+                    }
+                  }
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {
+                  console.error('Error reading theme from localStorage', e);
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body>
         <StoreProvider>
+          <ThemeSync />
           <ToastProvider />
           <Header />
           {children}
