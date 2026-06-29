@@ -20,6 +20,7 @@ export const CartPage = () => {
     totalPrice,
   } = useCart();
   const [mounted, setMounted] = useState(false);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   // Handle client-side hydration delays gracefully
   useEffect(() => {
@@ -28,6 +29,7 @@ export const CartPage = () => {
   }, []);
 
   const handleCheckout = () => {
+    setIsCheckingOut(true);
     router.push("/checkout");
   };
 
@@ -145,6 +147,7 @@ export const CartPage = () => {
                   variant="primary"
                   className={styles.checkoutBtn}
                   onClick={handleCheckout}
+                  isLoading={isCheckingOut}
                 >
                   Proceed to Checkout
                 </Button>

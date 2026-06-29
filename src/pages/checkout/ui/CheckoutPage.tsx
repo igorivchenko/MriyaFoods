@@ -100,7 +100,7 @@ export const CheckoutPage = () => {
           {/* Right Column: Sticky Summary */}
           <aside className={styles.rightColumn}>
             <div className={styles.stickySummary}>
-              <OrderSummary />
+              <OrderSummary isSubmitting={isSubmitting} />
             </div>
           </aside>
         </div>

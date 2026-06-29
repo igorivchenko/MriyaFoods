@@ -20,7 +20,11 @@ const parseWeight = (weightStr: string) => {
   return { value: 1, unit: "pcs" };
 };
 
-export const OrderSummary = () => {
+interface OrderSummaryProps {
+  isSubmitting?: boolean;
+}
+
+export const OrderSummary = ({ isSubmitting = false }: OrderSummaryProps) => {
   const { cartItems, updateQuantity, removeFromCart, totalPrice } = useCart();
 
   // Delivery Cost: $5.00 default (or $0 if cart is empty)
@@ -56,6 +60,7 @@ export const OrderSummary = () => {
         size="lg"
         className={styles.purchaseBtn}
         disabled={cartItems.length === 0}
+        isLoading={isSubmitting}
       >
         Purchase
       </Button>

@@ -39,6 +39,10 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
    */
   iconPosition?: "left" | "right";
   /**
+   * Shows a loading spinner inside the button and disables it.
+   */
+  isLoading?: boolean;
+  /**
    * React 19 ref type signature.
    */
   ref?: React.Ref<HTMLButtonElement>;
@@ -54,6 +58,8 @@ export const Button = ({
   iconPosition = "left",
   className = "",
   children,
+  isLoading = false,
+  disabled,
   ref,
   ...props
 }: ButtonProps) => {
@@ -63,6 +69,7 @@ export const Button = ({
     styles[size],
     {
       [styles.circular]: rounded,
+      [styles.loading]: isLoading,
     },
     className,
   );
@@ -80,10 +87,16 @@ export const Button = ({
   };
 
   return (
-    <button ref={ref} className={buttonClasses} {...props}>
-      {renderLeftIcon()}
+    <button
+      ref={ref}
+      className={buttonClasses}
+      disabled={disabled || isLoading}
+      {...props}
+    >
+      {isLoading && <span className={styles.spinner} aria-hidden="true" />}
+      {!isLoading && renderLeftIcon()}
       {children && <span className={styles.text}>{children}</span>}
-      {renderRightIcon()}
+      {!isLoading && renderRightIcon()}
     </button>
   );
 };

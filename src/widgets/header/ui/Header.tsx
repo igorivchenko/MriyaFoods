@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
@@ -39,6 +39,18 @@ export const Header = ({ activePath }: HeaderProps) => {
   const closeMobile = useCallback(() => {
     setMobileOpen(false);
   }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   return (
     <header>

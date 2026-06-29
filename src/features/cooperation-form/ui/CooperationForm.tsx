@@ -86,10 +86,10 @@ export const CooperationForm = () => {
         type="submit"
         variant="primary"
         size="lg"
-        disabled={isSubmitting}
+        isLoading={isSubmitting}
         className={styles.submitBtn}
       >
-        {isSubmitting ? "Sending..." : "Submit"}
+        Submit
       </Button>
     </form>
   );
