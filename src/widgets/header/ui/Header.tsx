@@ -9,6 +9,7 @@ import { useCart } from "@/entities/cart";
 import { useAppSelector } from "@/app/store";
 import { signOut } from "@/features/auth-by-email/api/auth";
 import { AuthModal } from "@/features/auth-by-email/ui/AuthModal";
+import { LogoutConfirmModal } from "@/features/auth-by-email/ui/LogoutConfirmModal";
 import toast from "react-hot-toast";
 import styles from "./Header.module.css";
 
@@ -35,6 +36,8 @@ export const Header = ({ activePath }: HeaderProps) => {
   const currentPath = activePath ?? pathname ?? "/";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const { totalCount } = useCart();
 
   const { isAuthenticated, user } = useAppSelector((state) => state.user);
@@ -48,12 +51,16 @@ export const Header = ({ activePath }: HeaderProps) => {
   }, []);
 
   const handleLogout = async () => {
+    setIsLoggingOut(true);
     try {
       await signOut();
       toast.success("Logged out successfully");
+      setLogoutModalOpen(false);
     } catch (err: unknown) {
       const errorMsg = err instanceof Error ? err.message : "Failed to log out";
       toast.error(errorMsg);
+    } finally {
+      setIsLoggingOut(false);
     }
   };
 
@@ -215,7 +222,7 @@ export const Header = ({ activePath }: HeaderProps) => {
                 <button
                   type="button"
                   className={styles.actionBtn}
-                  onClick={handleLogout}
+                  onClick={() => setLogoutModalOpen(true)}
                   aria-label="Sign Out"
                   title="Sign Out"
                 >
@@ -309,6 +316,13 @@ export const Header = ({ activePath }: HeaderProps) => {
       <AuthModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
+      />
+
+      <LogoutConfirmModal
+        isOpen={logoutModalOpen}
+        onClose={() => setLogoutModalOpen(false)}
+        onConfirm={handleLogout}
+        isLoading={isLoggingOut}
       />
     </header>
   );
