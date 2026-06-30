@@ -338,3 +338,34 @@
   justify-content: center;
   margin-top: var(--spacing-lg);
 }
+
+/* Loading and Error States */
+.loaderWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3xl) var(--spacing-md);
+  gap: var(--spacing-md);
+}
+
+.loaderText {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  color: var(--color-primary-tint);
+  margin: 0;
+}
+
+.errorWrapper {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-3xl) var(--spacing-md);
+}
+
+.errorText {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  color: var(--color-error);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}

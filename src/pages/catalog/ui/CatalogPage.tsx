@@ -2,6 +2,14 @@
 
 import { Suspense } from "react";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useAppDispatch } from "@/app/store";
+import { fetchProducts } from "@/entities/product";
+import {
+  fetchProductsStart,
+  fetchProductsSuccess,
+  fetchProductsFailure,
+} from "@/features/filter-products";
 import { FilterSidebar } from "@/features/filter-products/ui/FilterSidebar";
 import { ProductGrid } from "@/widgets/product-grid/ui/ProductGrid";
 import { useCatalogSync } from "@/features/filter-products/lib/useCatalogSync";
@@ -10,6 +18,34 @@ import styles from "./CatalogPage.module.css";
 const CatalogPageContent = () => {
   // Synchronize Redux filter states and router search queries
   useCatalogSync();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    let active = true;
+
+    const fetchCatalogProducts = async () => {
+      dispatch(fetchProductsStart());
+      try {
+        const data = await fetchProducts();
+
+        if (active && data) {
+          dispatch(fetchProductsSuccess(data));
+        }
+      } catch (err: unknown) {
+        if (active) {
+          const errorMsg =
+            err instanceof Error ? err.message : "Failed to load products";
+          dispatch(fetchProductsFailure(errorMsg));
+        }
+      }
+    };
+
+    fetchCatalogProducts();
+
+    return () => {
+      active = false;
+    };
+  }, [dispatch]);
 
   return (
     <div className={`${styles.pageWrapper} container`}>

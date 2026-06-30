@@ -13,6 +13,8 @@ import {
 } from "redux-persist";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
+import { userReducer } from "@/entities/user";
+
 // Safe fallback storage for SSR environment
 const createNoopStorage = () => {
   return {
@@ -41,6 +43,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   catalog: catalogReducer,
   cart: persistReducer(persistConfig, cartReducer),
+  user: userReducer,
 });
 
 export const makeStore = () => {
