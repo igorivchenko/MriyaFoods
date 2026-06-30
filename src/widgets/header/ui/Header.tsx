@@ -3,9 +3,13 @@
 import { useState, useCallback, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
+import { Search, ShoppingCart, User, Menu, X, LogOut } from "lucide-react";
 import { Icon } from "@/shared/ui";
 import { useCart } from "@/entities/cart";
+import { useAppSelector } from "@/app/store";
+import { signOut } from "@/features/auth-by-email/api/auth";
+import { AuthModal } from "@/features/auth-by-email/ui/AuthModal";
+import toast from "react-hot-toast";
 import styles from "./Header.module.css";
 
 /** Navigation link descriptor */
@@ -30,7 +34,10 @@ export const Header = ({ activePath }: HeaderProps) => {
   const pathname = usePathname();
   const currentPath = activePath ?? pathname ?? "/";
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
   const { totalCount } = useCart();
+
+  const { isAuthenticated, user } = useAppSelector((state) => state.user);
 
   const toggleMobile = useCallback(() => {
     setMobileOpen((prev) => !prev);
@@ -39,6 +46,16 @@ export const Header = ({ activePath }: HeaderProps) => {
   const closeMobile = useCallback(() => {
     setMobileOpen(false);
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      toast.success("Logged out successfully");
+    } catch (err: unknown) {
+      const errorMsg = err instanceof Error ? err.message : "Failed to log out";
+      toast.error(errorMsg);
+    }
+  };
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -189,14 +206,33 @@ export const Header = ({ activePath }: HeaderProps) => {
               )}
             </Link>
 
-            {/* Account button — dumb presentational */}
-            <button
-              type="button"
-              className={styles.actionBtn}
-              aria-label="My account"
-            >
-              <User size={20} />
-            </button>
+            {/* Account button — dynamic status trigger */}
+            {isAuthenticated && user ? (
+              <div className={styles.profileIndicator}>
+                <span className={styles.profileEmail} title={user.email}>
+                  {user.email?.split("@")[0]}
+                </span>
+                <button
+                  type="button"
+                  className={styles.actionBtn}
+                  onClick={handleLogout}
+                  aria-label="Sign Out"
+                  title="Sign Out"
+                >
+                  <LogOut size={18} />
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                className={styles.actionBtn}
+                onClick={() => setAuthModalOpen(true)}
+                aria-label="Sign In"
+                title="Sign In"
+              >
+                <User size={20} />
+              </button>
+            )}
 
             {/* Mobile hamburger toggle */}
             <button
@@ -269,6 +305,11 @@ export const Header = ({ activePath }: HeaderProps) => {
           ))}
         </ul>
       </aside>
+
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+      />
     </header>
   );
 };

@@ -3,7 +3,6 @@
 import React, { useState, useTransition } from "react";
 import { Search, ChevronDown, ChevronUp, RotateCcw } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/app/store";
-import { catalogProducts } from "@/entities/product";
 import Image from "next/image";
 import {
   toggleCategory,
@@ -12,6 +11,7 @@ import {
   setAvailability,
   setSearchQuery,
   resetFilters,
+  selectProducts,
 } from "../model/catalogSlice";
 import styles from "./FilterSidebar.module.css";
 
@@ -22,6 +22,8 @@ export const FilterSidebar = () => {
   const { categories, brands, manufacturers, availability, searchQuery } =
     useAppSelector((state) => state.catalog);
 
+  const products = useAppSelector(selectProducts);
+
   // Search input local state to prevent laggy typing due to URL sync
   const [searchInput, setSearchInput] = useState(searchQuery);
 
@@ -30,22 +32,22 @@ export const FilterSidebar = () => {
   const [showAllManufacturers, setShowAllManufacturers] = useState(false);
 
   // Dynamic counts calculations based on overall database
-  const totalCount = catalogProducts.length;
+  const totalCount = products.length;
 
   const getCategoryCount = (category: string) =>
-    catalogProducts.filter((p) => p.category === category).length;
+    products.filter((p) => p.category === category).length;
 
   const getBrandCount = (brand: string) =>
-    catalogProducts.filter((p) => p.brand === brand).length;
+    products.filter((p) => p.brand === brand).length;
 
   const getManufacturerCount = (man: string) =>
-    catalogProducts.filter((p) => p.manufacturer === man).length;
+    products.filter((p) => p.manufacturer === man).length;
 
   const getAvailabilityCount = (avail: "available" | "not-available") => {
     if (avail === "available") {
-      return catalogProducts.filter((p) => p.inStock).length;
+      return products.filter((p) => p.inStock).length;
     }
-    return catalogProducts.filter((p) => !p.inStock).length;
+    return products.filter((p) => !p.inStock).length;
   };
 
   // Search submit handler
@@ -319,7 +321,7 @@ export const FilterSidebar = () => {
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>Often Buy</h3>
         <div className={styles.oftenBuyList}>
-          {catalogProducts.slice(1, 3).map((prod) => (
+          {products.slice(1, 3).map((prod) => (
             <div key={prod.id} className={styles.oftenBuyItem}>
               <div className={styles.oftenBuyImageWrapper}>
                 <Image

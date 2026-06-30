@@ -1,3 +1,3 @@
 export * from "./model/types";
 export * from "./ui/ProductCard";
-export * from "./model/mockData/products";
+export * from "./api/productApi";

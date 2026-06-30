@@ -3,9 +3,12 @@ import { About } from "@/widgets/about";
 import { ProductCarousel } from "@/widgets/product-carousel";
 import { DeliveryMap } from "@/widgets/delivery-map";
 import { Cooperation } from "@/widgets/cooperation";
-import { popularProducts, newProducts } from "@/entities/product";
+import { fetchPopularProducts, fetchNewProducts } from "@/entities/product";
 
-export const HomePage = () => {
+export const HomePage = async () => {
+  const popularProducts = await fetchPopularProducts();
+  const newProducts = await fetchNewProducts();
+
   return (
     <main>
       <Hero />

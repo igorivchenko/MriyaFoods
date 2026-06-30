@@ -13,5 +13,11 @@ export {
   setViewMode,
   resetFilters,
   initializeFilters,
+  fetchProductsStart,
+  fetchProductsSuccess,
+  fetchProductsFailure,
+  selectProducts,
+  selectCatalogLoading,
+  selectCatalogError,
 } from "./model/catalogSlice";
 export type { CatalogState } from "./model/catalogSlice";

@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { makeStore } from "../store";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
+import { AuthInitializer } from "./AuthInitializer";
 
 export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   const [store] = useState(() => makeStore());
@@ -13,7 +14,7 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        {children}
+        <AuthInitializer>{children}</AuthInitializer>
       </PersistGate>
     </Provider>
   );

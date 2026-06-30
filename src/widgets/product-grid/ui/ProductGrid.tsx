@@ -2,10 +2,18 @@
 
 import React, { useMemo } from "react";
 import { Grid, List } from "lucide-react";
+import { ClipLoader } from "react-spinners";
 import { useAppDispatch, useAppSelector } from "@/app/store";
-import { catalogProducts, ProductCard, Product } from "@/entities/product";
+import { ProductCard, Product } from "@/entities/product";
 import { useCart } from "@/entities/cart";
-import { setSortBy, setPage, setViewMode } from "@/features/filter-products";
+import {
+  setSortBy,
+  setPage,
+  setViewMode,
+  selectProducts,
+  selectCatalogLoading,
+  selectCatalogError,
+} from "@/features/filter-products";
 import styles from "./ProductGrid.module.css";
 
 export const ProductGrid = () => {
@@ -24,9 +32,13 @@ export const ProductGrid = () => {
     viewMode,
   } = useAppSelector((state) => state.catalog);
 
+  const products = useAppSelector(selectProducts);
+  const loading = useAppSelector(selectCatalogLoading);
+  const error = useAppSelector(selectCatalogError);
+
   // 1. Client-Side Filtering, Searching, and Sorting
   const filteredAndSortedProducts = useMemo(() => {
-    let result = [...catalogProducts];
+    let result = [...products];
 
     // Filter by category
     if (categories.length > 0) {
@@ -86,7 +98,15 @@ export const ProductGrid = () => {
     }
 
     return result;
-  }, [categories, brands, manufacturers, availability, searchQuery, sortBy]);
+  }, [
+    products,
+    categories,
+    brands,
+    manufacturers,
+    availability,
+    searchQuery,
+    sortBy,
+  ]);
 
   // 2. Pagination Slicing
   const totalItems = filteredAndSortedProducts.length;
@@ -149,6 +169,23 @@ export const ProductGrid = () => {
       </div>
     );
   };
+
+  if (loading) {
+    return (
+      <div className={styles.loaderWrapper}>
+        <ClipLoader color="var(--color-secondary)" size={40} />
+        <p className={styles.loaderText}>Loading products...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.errorWrapper}>
+        <p className={styles.errorText}>Error: {error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>

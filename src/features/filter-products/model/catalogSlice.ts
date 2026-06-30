@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Product } from "@/entities/product";
 
 export interface CatalogState {
   categories: string[];
@@ -10,6 +11,9 @@ export interface CatalogState {
   currentPage: number;
   itemsPerPage: number;
   viewMode: "grid" | "list";
+  products: Product[];
+  loading: boolean;
+  error: string | null;
 }
 
 const initialState: CatalogState = {
@@ -22,6 +26,9 @@ const initialState: CatalogState = {
   currentPage: 1,
   itemsPerPage: 9,
   viewMode: "grid",
+  products: [],
+  loading: false,
+  error: null,
 };
 
 export const catalogSlice = createSlice({
@@ -99,6 +106,19 @@ export const catalogSlice = createSlice({
         ...action.payload,
       };
     },
+    fetchProductsStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchProductsSuccess: (state, { payload }: PayloadAction<Product[]>) => {
+      state.products = payload;
+      state.loading = false;
+      state.error = null;
+    },
+    fetchProductsFailure: (state, { payload }: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = payload;
+    },
   },
 });
 
@@ -113,7 +133,17 @@ export const {
   setViewMode,
   resetFilters,
   initializeFilters,
+  fetchProductsStart,
+  fetchProductsSuccess,
+  fetchProductsFailure,
 } = catalogSlice.actions;
 
 export const catalogReducer = catalogSlice.reducer;
 export default catalogReducer;
+
+export const selectProducts = (state: { catalog: CatalogState }) =>
+  state.catalog.products;
+export const selectCatalogLoading = (state: { catalog: CatalogState }) =>
+  state.catalog.loading;
+export const selectCatalogError = (state: { catalog: CatalogState }) =>
+  state.catalog.error;
