@@ -26,7 +26,7 @@
   font-family: var(--font-label);
   font-size: 0.85rem;
   font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
+  color: #4e2e1e;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   white-space: nowrap;

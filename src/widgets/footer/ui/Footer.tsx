@@ -97,7 +97,7 @@ export const Footer = () => {
       {/* Bottom Bar: Yellow/Gold strip */}
       <div className={styles.bottomBar}>
         <div className="container">
-          <p className={styles.copyright}>2025 | All rights reserved</p>
+          <p className={styles.copyright}>2026 | All rights reserved</p>
         </div>
       </div>
     </footer>
