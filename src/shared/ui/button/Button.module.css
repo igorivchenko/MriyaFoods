@@ -67,7 +67,7 @@
 /* Secondary variant: bright gold/yellow */
 .secondary {
   background-color: var(--color-secondary);
-  color: var(--color-black);
+  color: #1a1a1a;
   border-color: var(--color-secondary);
 }
 

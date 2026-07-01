@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .hero {
-  background-color: #faf5f0; /* Soft warm cream background */
+  background-color: var(--hero-bg);
   padding: 4.5rem 0;
   overflow: hidden;
   position: relative;

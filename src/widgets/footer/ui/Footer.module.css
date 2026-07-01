@@ -1,6 +1,6 @@
 .footer {
-  background-color: var(--color-primary);
-  color: rgba(255, 255, 255, 0.75);
+  background-color: var(--footer-bg);
+  color: rgba(var(--color-white-header-rgb), 0.75);
   padding: var(--spacing-3xl) 0 0 0;
   width: 100%;
   position: relative;
@@ -40,7 +40,7 @@
 
 .logoIcon {
   height: 132px;
-  color: var(--color-white);
+  color: var(--color-white-header);
 }
 
 /* Columns styling */
@@ -54,7 +54,7 @@
   font-family: var(--font-headline);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-bold);
-  color: var(--color-white);
+  color: var(--color-white-header);
   margin-bottom: var(--spacing-lg);
   text-transform: capitalize;
   letter-spacing: 0.02em;
@@ -74,7 +74,7 @@
 .link {
   font-family: var(--font-body);
   font-size: var(--font-size-sm);
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(var(--color-white-header-rgb), 0.75);
   transition: color var(--transition-fast);
   text-decoration: none;
 }
@@ -86,7 +86,7 @@
 .contactText {
   font-family: var(--font-body);
   font-size: var(--font-size-sm);
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(var(--color-white-header-rgb), 0.75);
 }
 
 /* Bottom Copyright Bar */
@@ -100,7 +100,7 @@
 .copyright {
   font-family: var(--font-body);
   font-size: var(--font-size-xs);
-  color: var(--color-primary-dark);
+  color: #291810; /* Explicit dark brown for readability on yellow copyright bar */
   font-weight: var(--font-weight-medium);
 }
 

@@ -2,6 +2,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { catalogReducer } from "@/features/filter-products";
 import { cartReducer } from "@/entities/cart";
+import { themeReducer } from "@/entities/theme";
 import {
   persistReducer,
   FLUSH,
@@ -40,10 +41,16 @@ const persistConfig = {
   storage,
 };
 
+const themePersistConfig = {
+  key: "mriyafoods-theme",
+  storage,
+};
+
 const rootReducer = combineReducers({
   catalog: catalogReducer,
   cart: persistReducer(persistConfig, cartReducer),
   user: userReducer,
+  theme: persistReducer(themePersistConfig, themeReducer),
 });
 
 export const makeStore = () => {

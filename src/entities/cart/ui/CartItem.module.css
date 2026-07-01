@@ -150,7 +150,7 @@
 
 .deleteBtn:hover {
   background: var(--color-error-light);
-  color: var(--color-error);
+  color: var(--color-error-hover);
 }
 
 /* Responsive view for Tablet and Mobile breakpoints */
@@ -193,4 +193,35 @@
     grid-area: delete;
     align-self: center;
   }
+}
+
+/* Dark Theme Adjustments */
+:global(.dark) .quantityControls {
+  background: var(--color-tertiary);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+:global(.dark) .qtyBtn {
+  background: var(--color-white);
+  color: var(--color-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+:global(.dark) .qtyBtn:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+:global(.dark) .qtyBtn:disabled {
+  background: var(--color-white);
+  color: var(--color-tertiary-dark);
+}
+
+:global(.dark) .deleteBtn {
+  color: var(--color-primary);
+}
+
+:global(.dark) .deleteBtn:hover {
+  background: var(--color-error-light);
+  color: var(--color-error-hover);
 }

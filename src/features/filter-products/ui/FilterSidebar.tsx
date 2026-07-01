@@ -308,6 +308,7 @@ export const FilterSidebar = () => {
           <input
             type="text"
             className={styles.searchInput}
+            name="search"
             placeholder="Search"
             value={searchInput}
             onChange={handleSearchChange}

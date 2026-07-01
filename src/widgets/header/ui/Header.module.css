@@ -29,7 +29,7 @@
 
 .followLabel {
   font-size: 14px;
-  color: var(--color-primary);
+  color: #4e2e1e; /* Explicit brand dark brown for readability on yellow bar */
   white-space: nowrap;
 }
 
@@ -45,7 +45,7 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  color: var(--color-primary);
+  color: #4e2e1e; /* Explicit brand dark brown for readability on yellow bar */
   border-radius: var(--radius-xs);
   transition:
     color var(--transition-fast),
@@ -53,7 +53,7 @@
 }
 
 .socialLink:hover {
-  color: var(--color-primary-hover);
+  color: #3b2317;
   transform: translateY(-1px);
 }
 
@@ -65,11 +65,11 @@
   white-space: nowrap;
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.04em;
-  color: var(--color-tertiary-dark);
+  color: #4e2e1e; /* Explicit brand dark brown for readability on yellow bar */
 }
 
 .phoneLink {
-  color: var(--color-primary);
+  color: #4e2e1e; /* Explicit brand dark brown for readability on yellow bar */
   font-weight: var(--font-weight-semibold);
   white-space: nowrap;
   transition:
@@ -79,7 +79,7 @@
 }
 
 .phoneLink:hover {
-  color: var(--color-primary-hover);
+  color: #3b2317;
   opacity: 0.85;
 }
 
@@ -113,7 +113,7 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  color: var(--color-white);
+  color: var(--color-white-header);
   transition: transform var(--transition-normal);
 }
 
@@ -153,7 +153,7 @@
   font-family: var(--font-body);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
-  color: var(--color-white);
+  color: var(--color-white-header);
   white-space: nowrap;
   transition: color var(--transition-fast);
 }
@@ -195,8 +195,8 @@
 .searchBar {
   display: flex;
   align-items: center;
-  background: rgba(var(--color-white-rgb), 0.12);
-  border: 1px solid rgba(var(--color-white-rgb), 0.2);
+  background: rgba(var(--color-white-header-rgb), 0.12);
+  border: 1px solid rgba(var(--color-white-header-rgb), 0.2);
   border-radius: var(--radius-full);
   padding: 0 4px 0 var(--spacing-md);
   height: 36px;
@@ -210,8 +210,8 @@
 
 .searchBar:focus-within {
   width: 250px;
-  background: rgba(var(--color-white-rgb), 0.2);
-  border-color: rgba(var(--color-white-rgb), 0.45);
+  background: rgba(var(--color-white-header-rgb), 0.2);
+  border-color: rgba(var(--color-white-header-rgb), 0.45);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -222,7 +222,7 @@
   background: transparent;
   font-family: var(--font-label);
   font-size: var(--font-size-sm);
-  color: var(--color-white);
+  color: var(--color-white-header);
   height: 100%;
   min-width: 0;
 }
@@ -245,7 +245,7 @@
 }
 
 .searchInput::placeholder {
-  color: rgba(var(--color-white-rgb), 0.75);
+  color: rgba(var(--color-white-header-rgb), 0.75);
 }
 
 .searchBtn {
@@ -254,7 +254,7 @@
   justify-content: center;
   background: transparent;
   border: none;
-  color: var(--color-white);
+  color: var(--color-white-header);
   cursor: pointer;
   width: 28px;
   height: 28px;
@@ -266,7 +266,7 @@
 }
 
 .searchBtn:hover {
-  background-color: rgba(var(--color-white-rgb), 0.15);
+  background-color: rgba(var(--color-white-header-rgb), 0.15);
 }
 
 .searchBtn:active {
@@ -283,7 +283,7 @@
   border-radius: var(--radius-sm);
   border: none;
   background: transparent;
-  color: var(--color-white);
+  color: var(--color-white-header);
   cursor: pointer;
   position: relative;
   transition:
@@ -345,7 +345,7 @@
   height: 40px;
   border: none;
   background: transparent;
-  color: var(--color-white);
+  color: var(--color-white-header);
   cursor: pointer;
   border-radius: var(--radius-sm);
   transition: background-color var(--transition-fast);
@@ -447,7 +447,8 @@
     margin-bottom: var(--spacing-md);
   }
 
-  .mobileDrawerClose {
+  .mobileDrawerClose,
+  .mobileThemeToggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -461,7 +462,8 @@
     transition: background-color var(--transition-fast);
   }
 
-  .mobileDrawerClose:hover {
+  .mobileDrawerClose:hover,
+  .mobileThemeToggle:hover {
     background: rgba(var(--color-primary-rgb), 0.12);
   }
 
@@ -589,4 +591,41 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* ==========================================================================
+   Dark Mode Overrides for Header
+   ========================================================================== */
+:global(.dark) .navBar {
+  background-color: #1a1a1a;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+:global(.dark) .mobileDrawer {
+  background-color: #1e1e1e;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4);
+}
+
+:global(.dark) .mobileDrawerClose,
+:global(.dark) .mobileThemeToggle {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-primary);
+}
+
+:global(.dark) .mobileDrawerClose:hover,
+:global(.dark) .mobileThemeToggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+:global(.dark) .mobileNavLink {
+  color: var(--color-primary);
+}
+
+:global(.dark) .mobileNavLink:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+:global(.dark) .cartBadge {
+  color: #1a1a1a;
+  border-color: #1a1a1a;
 }
