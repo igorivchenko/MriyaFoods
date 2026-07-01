@@ -17,8 +17,6 @@
   width: 100%;
   height: 100%;
   background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   animation: fadeIn 0.25s ease-out;
 }
 
@@ -26,17 +24,18 @@
   position: relative;
   width: 90%;
   max-width: 440px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  height: 90%;
+  max-height: max-content;
+  background: var(--color-white);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-lg);
   padding: var(--spacing-xl) var(--spacing-lg);
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 1001;
+  overflow-y: auto;
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -93,7 +92,7 @@
   font-family: var(--font-headline);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-secondary-dark);
+  color: var(--color-primary);
   margin: 0;
   line-height: 1.2;
 }
@@ -243,7 +242,7 @@
 .linkBtn {
   background: transparent;
   border: none;
-  color: var(--color-secondary-dark);
+  color: var(--color-primary);
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   padding: 0;
@@ -252,7 +251,7 @@
 }
 
 .linkBtn:hover {
-  color: var(--color-secondary-hover);
+  color: var(--color-primary-hover);
 }
 
 .switchModeLink {
@@ -308,4 +307,76 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Dark Theme Adjustments */
+:global(.dark) .logoIcon {
+  color: #4e2e1e;
+}
+
+/* Custom Scrollbar for Modal content container */
+.modal::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.modal::-webkit-scrollbar-button:single-button {
+  background-color: transparent;
+  display: block;
+  background-size: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 12px;
+}
+
+.modal::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgba(0,0,0,0.4)'><polygon points='50,0 0,100 100,100'/></svg>");
+}
+
+.modal::-webkit-scrollbar-button:single-button:vertical:increment {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgba(0,0,0,0.4)'><polygon points='50,100 0,0 100,0'/></svg>");
+}
+
+/* Dark mode adjustments for scrollbar */
+:global(.dark) .modal::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+:global(.dark) .modal::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+:global(.dark) .modal::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+:global(.dark)
+  .modal::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgba(255,255,255,0.4)'><polygon points='50,0 0,100 100,100'/></svg>");
+}
+
+:global(.dark)
+  .modal::-webkit-scrollbar-button:single-button:vertical:increment {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgba(255,255,255,0.4)'><polygon points='50,100 0,0 100,0'/></svg>");
 }

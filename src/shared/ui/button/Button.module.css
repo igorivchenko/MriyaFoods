@@ -83,16 +83,17 @@
 
 /* Glass variant: translucent off-white glassmorphism */
 .glass {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: var(--glass-bg);
   color: var(--color-primary);
-  border-color: var(--color-tertiary);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border-color: var(--glass-border);
+  backdrop-filter: blur(var(--glass-backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--glass-backdrop-blur));
 }
 
 .glass:hover:not(:disabled) {
-  background-color: rgba(255, 255, 255, 0.75);
-  border-color: var(--color-primary-tint);
+  background-color: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  color: var(--color-primary-hover);
   box-shadow: var(--glass-shadow);
 }
 

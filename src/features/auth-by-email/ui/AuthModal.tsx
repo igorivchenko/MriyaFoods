@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -32,6 +32,18 @@ type AuthFormValues = z.infer<typeof authSchema>;
 export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   const [mode, setMode] = useState<AuthMode>("signin");
   const [isLoading, setIsLoading] = useState(false);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   const {
     register,
@@ -78,7 +90,7 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
           return;
         }
         await signUp({ email: values.email, password: values.password });
-        toast.success("Successfully signed up! Please check email to verify.");
+        toast.success("Successfully signed up!");
         onClose();
       }
     } catch (err: unknown) {

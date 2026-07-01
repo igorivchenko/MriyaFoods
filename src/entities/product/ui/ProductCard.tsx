@@ -106,7 +106,7 @@ export const ProductCard = ({
         onClick={() => !isOutOfStock && onAddToCart?.(product)}
         disabled={isOutOfStock}
       >
-        {isOutOfStock ? "Нема в наявності" : "Add to cart"}
+        {isOutOfStock ? "Out of stock" : "Add to cart"}
       </Button>
     </article>
   );

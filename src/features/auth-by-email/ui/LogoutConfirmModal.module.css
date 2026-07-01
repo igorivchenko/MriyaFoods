@@ -54,7 +54,7 @@
   font-family: var(--font-headline);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-secondary-dark);
+  color: var(--color-primary);
   margin: 0 0 var(--spacing-xs) 0;
 }
 
@@ -76,8 +76,27 @@
   flex: 1;
 }
 
-.btnCancel {
+.btnCancel.btnCancel {
   flex: 1;
+  border: 1px solid rgba(78, 46, 30, 0.15);
+  background-color: transparent;
+  color: var(--color-primary);
+}
+
+.btnCancel.btnCancel:hover:not(:disabled) {
+  background-color: rgba(78, 46, 30, 0.05);
+  border-color: var(--color-primary);
+}
+
+:global(.dark) .btnCancel.btnCancel {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: var(--glass-bg);
+  color: var(--color-primary);
+}
+
+:global(.dark) .btnCancel.btnCancel:hover:not(:disabled) {
+  background-color: var(--glass-bg-hover);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 @keyframes fadeIn {

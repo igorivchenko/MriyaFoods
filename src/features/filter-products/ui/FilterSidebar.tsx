@@ -276,7 +276,7 @@ export const FilterSidebar = () => {
               }}
             />
             <span className={styles.checkboxCustom}></span>
-            <span className={styles.labelText}>is available</span>
+            <span className={styles.labelText}>In stock</span>
             <span className={styles.countText}>
               ({getAvailabilityCount("available")})
             </span>
@@ -296,7 +296,7 @@ export const FilterSidebar = () => {
               }}
             />
             <span className={styles.checkboxCustom}></span>
-            <span className={styles.labelText}>not available</span>
+            <span className={styles.labelText}>Out of stock</span>
             <span className={styles.countText}>
               ({getAvailabilityCount("not-available")})
             </span>

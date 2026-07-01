@@ -586,7 +586,7 @@
   font-family: var(--font-label);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-white);
+  color: var(--color-white-header);
   max-width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
