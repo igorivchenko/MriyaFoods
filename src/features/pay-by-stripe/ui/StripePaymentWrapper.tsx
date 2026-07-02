@@ -15,6 +15,13 @@ import styles from "./StripePayment.module.css";
 // Initialize Stripe outside component render to avoid re-instantiation
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "",
+  {
+    developerTools: {
+      assistant: {
+        enabled: process.env.NODE_ENV === "development",
+      },
+    },
+  },
 );
 
 interface StripePaymentWrapperProps {
