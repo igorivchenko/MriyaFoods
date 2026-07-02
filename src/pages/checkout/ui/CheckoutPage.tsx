@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronRight } from "lucide-react";
@@ -38,12 +38,28 @@ export const CheckoutPage = () => {
     setShowStripe(true);
   };
 
-  const handleStripeSuccess = () => {
+  const handleStripeSuccess = useCallback(() => {
     setIsSubmitted(true);
     successToast("Payment successful! Your order has been placed.");
     clearCart();
     router.push("/catalog");
-  };
+  }, [clearCart, router]);
+
+  // Handle Stripe redirect status (like PayPal checkout confirmation redirect)
+  useEffect(() => {
+    if (!mounted) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const redirectStatus = params.get("redirect_status");
+    if (redirectStatus === "succeeded") {
+      // Clean up parameters from the browser address bar to prevent execution on reload
+      window.history.replaceState({}, document.title, window.location.pathname);
+      // Run asynchronously to avoid React 19 cascading synchronous render lint warnings
+      setTimeout(() => {
+        handleStripeSuccess();
+      }, 0);
+    }
+  }, [mounted, handleStripeSuccess]);
 
   if (!mounted || (cartItems.length === 0 && !isSubmitted)) {
     return (
