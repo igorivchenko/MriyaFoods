@@ -74,7 +74,7 @@ export const Hero = () => {
                 Shop now
               </Button>
             </Link>
-            <Link href="/cooperation" passHref>
+            <Link href="/#cooperation" passHref>
               <Button variant="primary" size="lg" className={styles.workBtn}>
                 Work with us
               </Button>

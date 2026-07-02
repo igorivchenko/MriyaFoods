@@ -31,9 +31,9 @@ interface NavLink {
 
 const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "About", href: "/#about" },
   { label: "Catalog", href: "/catalog" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/#cooperation" },
 ];
 
 export interface HeaderProps {
