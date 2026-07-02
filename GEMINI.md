@@ -32,10 +32,12 @@ architecture, and stellar user experience.
 - **State Management:** Redux Toolkit + Redux Thunk
 - **Carousels:** Swiper (mobile touch-gestures & loop)
 - **Maps:** Leaflet + React Leaflet (optimized via dynamic lazy-loading)
+- **Payments:** Stripe Client SDK (`@stripe/stripe-js`, `@stripe/react-stripe-js`)
 
 ### Backend & Infrastructure
 
 - **BaaS:** Supabase (Auth, PostgreSQL, Storage with dynamic resizing)
+- **Payments:** Stripe Node.js SDK (`stripe`)
 
 ---
 

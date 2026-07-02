@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Minus, Plus, X } from "lucide-react";
 import { useCart } from "@/entities/cart";
 import { Button } from "@/shared/ui";
+import { StripePaymentWrapper } from "@/features/pay-by-stripe";
+import { CheckoutFormValues } from "@/features/create-order";
 import styles from "./OrderSummary.module.css";
 
 // Helper function to parse weight string (e.g. "100 g" -> { value: 100, unit: "g" })
@@ -22,9 +24,17 @@ const parseWeight = (weightStr: string) => {
 
 interface OrderSummaryProps {
   isSubmitting?: boolean;
+  showStripe?: boolean;
+  onStripeSuccess?: () => void;
+  billingDetails?: CheckoutFormValues | null;
 }
 
-export const OrderSummary = ({ isSubmitting = false }: OrderSummaryProps) => {
+export const OrderSummary = ({
+  isSubmitting = false,
+  showStripe = false,
+  onStripeSuccess,
+  billingDetails,
+}: OrderSummaryProps) => {
   const { cartItems, updateQuantity, removeFromCart, totalPrice } = useCart();
 
   // Delivery Cost: $5.00 default (or $0 if cart is empty)
@@ -52,18 +62,25 @@ export const OrderSummary = ({ isSubmitting = false }: OrderSummaryProps) => {
         </div>
       </div>
 
-      {/* Submit Button connected to checkout form */}
-      <Button
-        type="submit"
-        form="checkout-form"
-        variant="secondary"
-        size="lg"
-        className={styles.purchaseBtn}
-        disabled={cartItems.length === 0}
-        isLoading={isSubmitting}
-      >
-        Purchase
-      </Button>
+      {/* Submit Button connected to checkout form / Stripe Form */}
+      {showStripe && onStripeSuccess && billingDetails ? (
+        <StripePaymentWrapper
+          onSuccess={onStripeSuccess}
+          billingDetails={billingDetails}
+        />
+      ) : (
+        <Button
+          type="submit"
+          form="checkout-form"
+          variant="secondary"
+          size="lg"
+          className={styles.purchaseBtn}
+          disabled={cartItems.length === 0}
+          isLoading={isSubmitting}
+        >
+          Purchase
+        </Button>
+      )}
 
       {/* Scrollable list of items */}
       {cartItems.length > 0 && (

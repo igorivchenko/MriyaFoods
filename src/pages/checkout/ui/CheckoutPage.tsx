@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import { ClipLoader } from "react-spinners";
 import { useCart } from "@/entities/cart";
-import { successToast, errorToast } from "@/shared/lib/helpers/toast";
+import { successToast } from "@/shared/lib/helpers/toast";
 import { CheckoutForm, CheckoutFormValues } from "@/features/create-order";
 import { OrderSummary } from "@/widgets/order-summary";
 import styles from "./CheckoutPage.module.css";
@@ -15,8 +15,10 @@ export const CheckoutPage = () => {
   const router = useRouter();
   const { cartItems, clearCart } = useCart();
   const [mounted, setMounted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showStripe, setShowStripe] = useState(false);
+  const [billingDetails, setBillingDetails] =
+    useState<CheckoutFormValues | null>(null);
 
   // Handle client-side hydration delays
   useEffect(() => {
@@ -31,30 +33,16 @@ export const CheckoutPage = () => {
     }
   }, [mounted, cartItems.length, router, isSubmitted]);
 
-  const handleSubmit = async (_values: CheckoutFormValues) => {
-    setIsSubmitting(true);
-    try {
-      console.log("Submitting order details:", _values);
-      // Mock API request with 1.5-second delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+  const handleSubmit = (values: CheckoutFormValues) => {
+    setBillingDetails(values);
+    setShowStripe(true);
+  };
 
-      // Mark as submitted to prevent empty cart redirect logic
-      setIsSubmitted(true);
-
-      successToast(
-        "Order placed successfully! Thank you for choosing MriyaFoods.",
-      );
-
-      // Wipe persistent cart state
-      clearCart();
-
-      // Redirect to catalog
-      router.push("/catalog");
-    } catch (error) {
-      errorToast(error);
-    } finally {
-      setIsSubmitting(false);
-    }
+  const handleStripeSuccess = () => {
+    setIsSubmitted(true);
+    successToast("Payment successful! Your order has been placed.");
+    clearCart();
+    router.push("/catalog");
   };
 
   if (!mounted || (cartItems.length === 0 && !isSubmitted)) {
@@ -90,17 +78,18 @@ export const CheckoutPage = () => {
             <h1 className={styles.pageTitle}>Checkout</h1>
 
             <div className={styles.formCard}>
-              <CheckoutForm
-                onSubmit={handleSubmit}
-                isSubmitting={isSubmitting}
-              />
+              <CheckoutForm onSubmit={handleSubmit} isSubmitting={showStripe} />
             </div>
           </div>
 
           {/* Right Column: Sticky Summary */}
           <aside className={styles.rightColumn}>
             <div className={styles.stickySummary}>
-              <OrderSummary isSubmitting={isSubmitting} />
+              <OrderSummary
+                showStripe={showStripe}
+                onStripeSuccess={handleStripeSuccess}
+                billingDetails={billingDetails}
+              />
             </div>
           </aside>
         </div>

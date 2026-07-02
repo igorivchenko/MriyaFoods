@@ -20,9 +20,6 @@ export const checkoutFormSchema = z.object({
   postcode: z.string().min(1, { message: "Postcode is required" }),
   packagingType: z.string().optional().or(z.literal("")),
   shippingOption: z.string().optional().or(z.literal("")),
-  paymentMethod: z.enum(["apple-pay", "paypal", "card"], {
-    message: "Please select a payment method",
-  }),
 });
 
 export type CheckoutFormValues = z.infer<typeof checkoutFormSchema>;

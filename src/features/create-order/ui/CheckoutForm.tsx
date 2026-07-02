@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check } from "lucide-react";
 import { Input } from "@/shared/ui";
 import {
   checkoutFormSchema,
@@ -33,7 +32,6 @@ export const CheckoutForm = ({ onSubmit, isSubmitting }: CheckoutFormProps) => {
       postcode: "",
       packagingType: "",
       shippingOption: "",
-      paymentMethod: "card", // matches checked credit card in design by default
     },
   });
 
@@ -117,63 +115,6 @@ export const CheckoutForm = ({ onSubmit, isSubmitting }: CheckoutFormProps) => {
             disabled={isSubmitting}
             {...register("shippingOption")}
           />
-        </div>
-      </section>
-
-      {/* 3. Payment Selector */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Payment:</h2>
-        <div className={styles.paymentContainer}>
-          {/* Apple Pay */}
-          <label className={styles.paymentOption}>
-            <input
-              type="radio"
-              value="apple-pay"
-              disabled={isSubmitting}
-              className={styles.hiddenRadio}
-              {...register("paymentMethod")}
-            />
-            <span className={styles.customCheck}>
-              <Check className={styles.checkmark} size={14} strokeWidth={3} />
-            </span>
-            <span className={styles.paymentText}>Apple Pay</span>
-          </label>
-
-          {/* PayPal */}
-          <label className={styles.paymentOption}>
-            <input
-              type="radio"
-              value="paypal"
-              disabled={isSubmitting}
-              className={styles.hiddenRadio}
-              {...register("paymentMethod")}
-            />
-            <span className={styles.customCheck}>
-              <Check className={styles.checkmark} size={14} strokeWidth={3} />
-            </span>
-            <span className={styles.paymentText}>Pay Pal</span>
-          </label>
-
-          {/* Card */}
-          <label className={styles.paymentOption}>
-            <input
-              type="radio"
-              value="card"
-              disabled={isSubmitting}
-              className={styles.hiddenRadio}
-              {...register("paymentMethod")}
-            />
-            <span className={styles.customCheck}>
-              <Check className={styles.checkmark} size={14} strokeWidth={3} />
-            </span>
-            <span className={styles.paymentText}>Credit or debit card</span>
-          </label>
-
-          {errors.paymentMethod && (
-            <p className={styles.paymentError} role="alert">
-              {errors.paymentMethod.message}
-            </p>
-          )}
         </div>
       </section>
     </form>
