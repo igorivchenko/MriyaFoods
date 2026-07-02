@@ -1,6 +1,6 @@
 # MriyaFoods 🌾 — Premium Food & Grocery E-Commerce Platform
 
-A high-performance, modern Next.js e-commerce application tailored for premium food delivery. This platform is built with a scalable architectural pattern, strict type-safety, Figma-aligned custom UI tokens, and secure payment integrations.
+A high-performance, modern Next.js e-commerce application tailored for premium food delivery. This platform is built with a scalable architectural pattern, strict type-safety, Figma-aligned custom UI tokens, and secure payment integrations, including a fully implemented Stripe test payment flow.
 
 ---
 
@@ -10,7 +10,7 @@ A high-performance, modern Next.js e-commerce application tailored for premium f
 - 📦 **Dynamic Catalog**: Interactive product grid with client-side filtering by category, search queries, brand, and real-time stock status sync.
 - 🛒 **Persistent Shopping Cart**: Global state-managed shopping cart utilizing Redux Toolkit (RTK) and `redux-persist` for automatic local storage synchronization.
 - 📋 **Advanced Checkout Flow**: Multi-step checkout form utilizing client-side validations via `React Hook Form` and `Zod` schemas.
-- 💳 **Secure Payment Gateway**: Multi-method checkout processing via Stripe Elements (supporting both **Credit/Debit Cards** and **PayPal**), backed by strict server-side price verification to prevent client-side data tampering.
+- 💳 **Secure Payment Gateway**: Multi-method checkout processing via Stripe Elements (supporting both **Credit/Debit Cards** and **PayPal**), backed by strict server-side price verification to prevent client-side data tampering. **Stripe Test Mode is fully configured for card and PayPal sandbox payments.**
 
 ---
 
@@ -89,3 +89,13 @@ npm run build
 - **PCI Compliance**: All payment operations use **Stripe Elements**, meaning card numbers and sensitive data are tokenized directly on Stripe's secure infrastructure. Card details never touch our Next.js application servers.
 - **Server-Side Price Verification**: To prevent fraud or client-side tampering, final checkout prices are recalculated and verified on the server using Supabase product data before a Stripe PaymentIntent is created.
 - **Database Security**: Supabase tables are secured with Row Level Security (RLS) policies, ensuring users can only read/write their own profiles, carts, and order histories.
+
+---
+
+## 💳 Testing Payments (Stripe Test Mode)
+
+To test the payment integrations, you can use standard Stripe sandbox credentials in the checkout form:
+
+- **Test Card Number**: `4242 4242 4242 4242`
+- **Expiry Date**: Any future date (e.g., `12/30`)
+- **CVC**: Any 3-digit number (e.g., `123`)
