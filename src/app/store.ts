@@ -36,11 +36,6 @@ const storage =
     ? createWebStorage("local")
     : createNoopStorage();
 
-const persistConfig = {
-  key: "mriyafoods-cart",
-  storage,
-};
-
 const themePersistConfig = {
   key: "mriyafoods-theme",
   storage,
@@ -48,7 +43,7 @@ const themePersistConfig = {
 
 const rootReducer = combineReducers({
   catalog: catalogReducer,
-  cart: persistReducer(persistConfig, cartReducer),
+  cart: cartReducer,
   user: userReducer,
   theme: persistReducer(themePersistConfig, themeReducer),
 });

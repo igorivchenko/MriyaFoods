@@ -1,10 +1,10 @@
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { Product } from "@/entities/product";
 import {
-  addToCart as addToCartAction,
-  removeFromCart as removeFromCartAction,
-  updateQuantity as updateQuantityAction,
-  clearCart as clearCartAction,
+  addToCartThunk,
+  removeFromCartThunk,
+  updateQuantityThunk,
+  clearCartThunk,
 } from "./cartSlice";
 import toast from "react-hot-toast";
 
@@ -21,19 +21,19 @@ export const useCart = () => {
     } else {
       toast.success(`${product.title} added to cart!`);
     }
-    dispatch(addToCartAction(product));
+    dispatch(addToCartThunk(product));
   };
 
   const handleRemoveFromCart = (productId: string) => {
-    dispatch(removeFromCartAction(productId));
+    dispatch(removeFromCartThunk(productId));
   };
 
   const handleUpdateQuantity = (productId: string, quantity: number) => {
-    dispatch(updateQuantityAction({ productId, quantity }));
+    dispatch(updateQuantityThunk({ productId, quantity }));
   };
 
   const handleClearCart = () => {
-    dispatch(clearCartAction());
+    dispatch(clearCartThunk());
   };
 
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
