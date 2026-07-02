@@ -3,6 +3,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { ProductCard, Product } from "@/entities/product";
 import { useCart } from "@/entities/cart";
 import styles from "./ProductCarousel.module.css";
@@ -35,7 +36,12 @@ export const ProductCarousel = ({
   return (
     <section className={styles.section}>
       <div className={`${styles.container} container`}>
-        <h2 className={styles.sectionTitle}>{title}</h2>
+        <div className={styles.headerRow}>
+          <h2 className={styles.sectionTitle}>{title}</h2>
+          <Link href="/catalog" className={styles.viewAllBtn}>
+            View all
+          </Link>
+        </div>
         <div className={styles.carouselWrapper}>
           {/* Custom Navigation Buttons Matching Brand Identity */}
           <button
