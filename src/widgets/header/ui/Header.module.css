@@ -397,24 +397,27 @@
 
   /* Mobile overlay menu (shown when open) */
   .mobileOverlay {
-    display: none;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(var(--color-black-rgb), 0.4);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: 99;
     opacity: 0;
-    transition: opacity var(--transition-normal);
+    visibility: hidden;
+    transition:
+      opacity var(--transition-normal),
+      visibility var(--transition-normal);
     pointer-events: none;
   }
 
   .mobileOverlayOpen {
-    display: block;
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 
@@ -628,4 +631,8 @@
 :global(.dark) .cartBadge {
   color: #1a1a1a;
   border-color: #1a1a1a;
+}
+
+:global(.dark) .mobileOverlay {
+  background: rgba(0, 0, 0, 0.25);
 }
