@@ -60,13 +60,20 @@ export const StripePaymentWrapper = ({
 
   // Configure Stripe's appearance API to match project look and feel
   const appearance = {
-    theme: (isDark ? "night" : "flat") as "night" | "flat",
+    theme: (isDark ? "night" : "stripe") as "night" | "stripe",
     variables: {
-      colorPrimary: "#ffd42f", // Brand secondary yellow
+      colorPrimary: isDark ? "#ffd42f" : "#4e2e1e",
       colorBackground: isDark ? "#291810" : "#ffffff", // Dark brown palette or pure white
       colorText: isDark ? "#ffffff" : "#1a1a1a",
       colorDanger: "#a31d1d",
       borderRadius: "4px",
+      colorBorder: isDark
+        ? "rgba(255, 255, 255, 0.15)"
+        : "rgba(78, 46, 30, 0.15)",
+      colorBorderHover: isDark
+        ? "rgba(255, 255, 255, 0.25)"
+        : "rgba(78, 46, 30, 0.25)",
+      colorBorderFocus: isDark ? "#ffd42f" : "#4e2e1e",
     },
   };
 
