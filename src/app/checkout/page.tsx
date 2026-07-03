@@ -1,4 +1,4 @@
-import CheckoutPage from "@/pages/checkout/ui/CheckoutPage";
+import CheckoutPage from "@/app-pages/checkout/ui/CheckoutPage";
 
 export const metadata = {
   title: "Checkout — Mriya Foods",

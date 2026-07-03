@@ -1,4 +1,4 @@
-import CatalogPage from "@/pages/catalog/ui/CatalogPage";
+import CatalogPage from "@/app-pages/catalog/ui/CatalogPage";
 
 export const metadata = {
   title: "Catalog — Mriya Foods",

@@ -1,4 +1,4 @@
-import CartPage from "@/pages/cart/ui/CartPage";
+import CartPage from "@/app-pages/cart/ui/CartPage";
 
 export const metadata = {
   title: "Shopping Cart — Mriya Foods",
