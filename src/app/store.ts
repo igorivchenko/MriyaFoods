@@ -41,8 +41,14 @@ const themePersistConfig = {
   storage,
 };
 
+const catalogPersistConfig = {
+  key: "mriyafoods-catalog",
+  storage,
+  whitelist: ["viewMode"],
+};
+
 const rootReducer = combineReducers({
-  catalog: catalogReducer,
+  catalog: persistReducer(catalogPersistConfig, catalogReducer),
   cart: cartReducer,
   user: userReducer,
   theme: persistReducer(themePersistConfig, themeReducer),
