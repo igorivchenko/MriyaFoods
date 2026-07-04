@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/app/store";
 import { supabase } from "@/shared/api/supabaseClient";
 import { setUser, setLoading } from "@/entities/user";
@@ -11,26 +12,27 @@ interface AuthInitializerProps {
 
 export const AuthInitializer = ({ children }: AuthInitializerProps) => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     dispatch(setLoading(true));
 
-    // Clear hash containing auth tokens from URL bar for clean UX and security
-    if (
-      typeof window !== "undefined" &&
-      window.location.hash.includes("access_token=")
-    ) {
-      window.history.replaceState(
-        null,
-        "",
-        window.location.pathname + window.location.search,
-      );
-    }
+    const cleanHash = () => {
+      if (
+        typeof window !== "undefined" &&
+        window.location.hash.includes("access_token=")
+      ) {
+        router.replace(window.location.pathname + window.location.search);
+      }
+    };
+
+    const initialTimer = setTimeout(cleanHash, 500);
 
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         dispatch(setUser({ user: session.user, session }));
+        cleanHash();
       } else {
         dispatch(setUser({ user: null, session: null }));
       }
@@ -40,9 +42,12 @@ export const AuthInitializer = ({ children }: AuthInitializerProps) => {
     // Listen for auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
         dispatch(setUser({ user: session.user, session }));
+        if (event === "SIGNED_IN") {
+          setTimeout(cleanHash, 100);
+        }
       } else {
         dispatch(setUser({ user: null, session: null }));
       }
@@ -50,9 +55,10 @@ export const AuthInitializer = ({ children }: AuthInitializerProps) => {
     });
 
     return () => {
+      clearTimeout(initialTimer);
       subscription.unsubscribe();
     };
-  }, [dispatch]);
+  }, [dispatch, router]);
 
   return <>{children}</>;
 };
