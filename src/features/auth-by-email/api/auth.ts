@@ -20,6 +20,7 @@ export const signInWithOtp = async (email: string) => {
   const { data, error } = await supabase.auth.signInWithOtp({
     email,
     options: {
+      shouldCreateUser: false,
       emailRedirectTo:
         typeof window !== "undefined" ? window.location.origin : undefined,
     },

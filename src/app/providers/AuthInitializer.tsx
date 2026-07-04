@@ -15,6 +15,18 @@ export const AuthInitializer = ({ children }: AuthInitializerProps) => {
   useEffect(() => {
     dispatch(setLoading(true));
 
+    // Clear hash containing auth tokens from URL bar for clean UX and security
+    if (
+      typeof window !== "undefined" &&
+      window.location.hash.includes("access_token=")
+    ) {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      );
+    }
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {

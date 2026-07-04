@@ -74,28 +74,39 @@ export const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
           duration: 6000,
         });
         onClose();
-      } else if (mode === "signin") {
-        if (!values.password) {
-          toast.error("Password is required for Sign In");
-          setIsLoading(false);
-          return;
-        }
+        return;
+      }
+
+      if (!values.password) {
+        toast.error(
+          mode === "signin"
+            ? "Password is required for Sign In"
+            : "Password is required for Sign Up",
+        );
+        return;
+      }
+
+      if (mode === "signin") {
         await signIn({ email: values.email, password: values.password });
         toast.success("Successfully signed in!");
         onClose();
-      } else {
-        if (!values.password) {
-          toast.error("Password is required for Sign Up");
-          setIsLoading(false);
-          return;
-        }
-        await signUp({ email: values.email, password: values.password });
-        toast.success("Successfully signed up!");
-        onClose();
+        return;
       }
+
+      await signUp({ email: values.email, password: values.password });
+      toast.success("Successfully signed up!");
+      onClose();
     } catch (err: unknown) {
-      const errorMsg =
+      console.log(err);
+      let errorMsg =
         err instanceof Error ? err.message : "Authentication failed";
+      if (
+        errorMsg.toLowerCase().includes("signups not allowed for otp") ||
+        errorMsg.toLowerCase().includes("signups are disabled") ||
+        errorMsg.toLowerCase().includes("user not found")
+      ) {
+        errorMsg = "No account found with this email. Please sign up first.";
+      }
       toast.error(errorMsg);
     } finally {
       setIsLoading(false);
